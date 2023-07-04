@@ -32,7 +32,7 @@ function App() {
         <Route path="/category/:subcategoryName" element={<SubCategoryDetails />} exact />
         <Route path="/category/:subcategory/:brand/:id" element={<ProductScreen />} exact />
         <Route path="/login" element={<Login />} exact />
-        <Route path="/register" element={<Register />} exact />
+        <Route path="/register" element={<Register />} exact/>
         <Route path="/settings" element={<SettingsScreen />} exact />
         <Route path="/cart/:id?" element={<CartScreen />} />
         <Route path="/shipping" element={<Shipping />} />

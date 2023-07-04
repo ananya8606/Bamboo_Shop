@@ -29,15 +29,14 @@ const Register = () => {
     const userLogin = useSelector((state) => state.user.userLogin)
     const { userInformation: userInfo } = userLogin
     const location=useLocation();
-    const redirect = location.search && location.search.split('=')[1]
    const history=useNavigate();
     useEffect(() => {
       if (error) {
         dispatch(userRegisterClear())
       }
-      userInformation && redirect
-        ? history(redirect)
-        : userInformation && window.history.back()
+      userInformation
+        ? history('/')
+        : null
     }, [history, userInformation])
   
     return (
@@ -85,7 +84,7 @@ const Register = () => {
             <button type='submit'>{r.su[language]}</button>
           </form>
           <span>{r.ahaa[language]}</span>
-          <Link to={`/login?redirect=${redirect}`}>{r.login[language]}</Link>
+          <Link to={`/login`}>{r.login[language]}</Link>
         </div>
       </div>
     )

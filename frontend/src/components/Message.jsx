@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Message = ({ message, color }) => {
+const Message = ({ message, color}) => {
   return (
-    <div className='message'>
+    <div className='message' >
       <span style={{ background: color }}>{message}</span>
     </div>
   )

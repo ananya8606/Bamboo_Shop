@@ -33,7 +33,7 @@ const CartScreen = () => {
 
   useEffect(() => {
     if (productId!='cartItems') {
-      dispatch(addToCart({ id: productId, qty: qty }));
+      dispatch(addToCart({id:productId, qty:qty}));
     }
   }, [dispatch, productId, qty]);
 
@@ -56,10 +56,10 @@ const CartScreen = () => {
             <span>{c.emptyCart[language]}</span>
           ) : (
             cartItems.map((item) => (
-              <React.Fragment key={item._id}>
-                <div className='cart-controller'>
+              <>
+                <div className='cart-controller' key={item.product}>
                   <Link
-                    to={`/category/${item.category}/${item.subCategory}/${item._id}`}
+                    to={`/category/${item.category}/${item.subCategory}/${item.product}`}
                   >
                     <img src={item.image} alt='' />
                   </Link>
@@ -67,21 +67,21 @@ const CartScreen = () => {
                   <span>Rs. {item.price}</span>
                   <div className="quantity-controller">
                     <button
-                      onClick={() => dispatch(addToCart({ id: item._id, qty: item.qty - 1 }))}
+                      onClick={() => dispatch(addToCart({ id: item.product, qty:(item.qty>0?item.qty - 1:0) }))}
                       className="quantity-btn"
                     >
                       -
                     </button>
                     <span>{item.qty}</span>
                     <button
-                      onClick={() => dispatch(addToCart({ id: item._id, qty: item.qty + 1 }))}
+                      onClick={() => dispatch(addToCart({ id: item.product, qty: item.qty + 1 }))}
                       className="quantity-btn"
                     >
                       +
                     </button>
                   </div>
                   <i
-                    onClick={() => removeFromCartHandler(item._id)}
+                    onClick={() => removeFromCartHandler(item.product)}
                     className='fas fa-trash'
                   ></i>
                 </div>
@@ -89,7 +89,7 @@ const CartScreen = () => {
                   style={{ marginLeft: '10px', width: '70%' }}
                   className='underline'
                 ></div>
-              </React.Fragment>
+              </>
             ))
           )}
         </div>

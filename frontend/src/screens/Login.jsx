@@ -103,7 +103,7 @@ const Login = () => {
           <span className='g-text'>{l.google[language]}</span>
         </button>
         <span>{l.nr[language]}</span>
-        <Link to={`/register?redirect=${redirect}`}>{l.rg[language]}</Link>
+        <Link to={`/register`}>{l.rg[language]}</Link>
       </div>
     </div>
   );

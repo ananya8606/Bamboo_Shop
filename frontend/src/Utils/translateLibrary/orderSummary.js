@@ -1,51 +1,51 @@
 export const s = {
     title: {
-        en: "ORDER SUMMARY",
-        bn: "訂單摘要",
-        hi: "ऑर्डर का सारांश",
-        ne: "支払方法"
+      en: "ORDER SUMMARY",
+      bn: "অর্ডার সংক্ষেপ",
+      hi: "ऑर्डर का सारांश",
+      ne: "अर्डर सारांश"
     },
     shippingaddress: {
-        en: "SHIPPING ADDRESS",
-        bn: "運輸",
-        hi: "शिपिंग पता",
-        ne:"付款方法"
+      en: "SHIPPING ADDRESS",
+      bn: "প্রেরণের ঠিকানা",
+      hi: "शिपिंग पता",
+      ne: "शिपिंग ठेगाना"
     },
     paymentmethod: {
-        en: "PAYMENT METHOD",
-        bn: "付款方法",
-        hi: "भुगतान विधि",
-        ne: "アイテム"
+      en: "PAYMENT METHOD",
+      bn: "পেমেন্ট পদ্ধতি",
+      hi: "भुगतान विधि",
+      ne: "भुक्तानी विधि"
     },
     shipping: {
-        en: "SHIPPING",
-        bn: "地址",
-        hi: "शिपिंग",
-        ne:"アイテム"
+      en: "SHIPPING",
+      bn: "পরিবহন",
+      hi: "शिपिंग",
+      ne: "शिपिंग"
     },
     orderitems: {
-        en: "ORDER ITEMS",
-        bn: "物品",
-        hi: "आइटम ऑर्डर करें",
-        ne: "したサイズ"
+      en: "ORDER ITEMS",
+      bn: "অর্ডার আইটেমসমূহ",
+      hi: "आइटम ऑर्डर करें",
+      ne: "अर्डर आइटमहरू"
     },
     total: {
-        en: "TOTAL",
-        bn: "尺碼",
-        hi: "कुल",
-        ne: "したサイズ"
+      en: "TOTAL",
+      bn: "মোট",
+      hi: "कुल",
+      ne: "कुल"
     },
     items: {
-        en: "ITEMS",
-        bn: "物品",
-        hi: "आइटम्स",
-        ne: "アイテム"
+      en: "ITEMS",
+      bn: "আইটেমসমূহ",
+      hi: "आइटम्स",
+      ne: "वस्तुहरू"
     },
     tax: {
-        en: "TAX",
-        bn: "稅",
-        hi: "टैक्स",
-        ne: "したサイズ"
+      en: "TAX",
+      bn: "ট্যাক্স",
+      hi: "टैक्स",
+      ne: "कर"
     },
-
-};
+  };
+  

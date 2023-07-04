@@ -18,12 +18,12 @@ export const addToCart = createAsyncThunk(
     };
     const state = getState();
 
-    const existItem = state.cart.cartItems.find((x) => x._id === product._id);
+    const existItem = state.cart.cartItems.find((x) => x.product === product.product);
 
     let updatedCartItems;
     if (existItem) {
       updatedCartItems = state.cart.cartItems.map((x) =>
-        x._id === product._id ? product : x
+        x.product === product.product ? product : x
       );
     } else {
       updatedCartItems = [...state.cart.cartItems, product];
@@ -40,7 +40,7 @@ export const removeFromCart = createAsyncThunk(
   async (id, { getState }) => {
     const state = getState();
     const updatedCartItems = state.cart.cartItems.filter(
-      (item) => item._id !== id
+      (item) => item.product !== id
     );
     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
     return updatedCartItems;

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { setLang } from "../Utils/setlang";
-import Message from "../components/Message";
 import { countrySettings, currencySettings } from "../Utils/settings";
 import { updateSettings } from "../reducers/settingsReducers";
 import { setting } from "../Utils/translateLibrary/settings";
@@ -14,19 +13,19 @@ const SettingsScreen = () => {
   const [language, setLanguage] = useState(settings.language);
   const [currency, setCurrency] = useState(settings.currency);
   const [country, setCountry] = useState(settings.country);
-
+  const [updated , setUpdated ] = useState(false);
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(updateSettings({ language, country, currency }));
+    setUpdated(true); 
+    dispatch(updateSettings({ language, country, currency }))
   };
 
   return (
     <>
-      {success && (
-        <Message variant="success">
-          Successfully updated settings
-        </Message>
-      )}
+      {updated ? 
+        (<div className='message' style={{marginTop:'10%'}} >
+        <span style={{ background: 'green' }}>Successfully updated settings</span>
+      </div>)  : null }
       <div className="form-outer justify-content-center">
         <div className="form-outermost">
           <h1>{setting.title[language]}</h1>

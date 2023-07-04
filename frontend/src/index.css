@@ -969,8 +969,6 @@ margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 500px;
-
 }
 .message span{
   font-size: 20px !important;
@@ -1447,4 +1445,8 @@ border-radius: 5px;
 .quantity-controller span {
   margin-right:15px;
   font-size: 16px;
+}
+
+.react-slideshow-container .default-nav {
+  margin-top:12%;
 }

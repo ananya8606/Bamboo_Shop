@@ -1,92 +1,93 @@
 export const o = {
     title: {
-        en: "SHIPPING ADDRESS",
-        bn: "運輸",
-        hi: "शिपिंग पता",
-        ne:"電子メールアドレス"
+      en: "SHIPPING ADDRESS",
+      bn: "প্রেরণের ঠিকানা",
+      hi: "शिपिंग पता",
+      ne: "शिपिंग ठेगाना"
     },
     items: {
-        en: "ITEMS",
-        bn: "名字",
-        hi: "आइटम्स",
-        ne:"電子メールアドレス"
+      en: "ITEMS",
+      bn: "আইটেমগুলি",
+      hi: "आइटम्स",
+      ne: "वस्तुहरू"
     },
     shipping: {
-        en: "SHIPPING",
-        bn: "姓氏",
-        hi: "शिपिंग",
-        ne:"電子メールアドレス"
+      en: "SHIPPING",
+      bn: "পরিবহন",
+      hi: "शिपिंग",
+      ne: "शिपिंग"
     },
     tax: {
-        en: "TAX",
-        bn: "電郵地址",
-        hi: "टैक्स ",
-        ne:"電子メールアドレス"
+      en: "TAX",
+      bn: "কর",
+      hi: "टैक्स",
+      ne: "कर"
     },
     total: {
-        en: "TOTAL",
-        bn: "地址 (第一行)",
-        hi: "कुल",
-        ne:"電子メールアドレス"
+      en: "TOTAL",
+      bn: "মোট",
+      hi: "कुल",
+      ne: "कुल"
     },
-    paymentMethod:{
+    paymentMethod: {
       en: "PAYMENT METHOD",
-      bn: "電郵地址",
+      bn: "পেমেন্ট পদ্ধতি",
       hi: "भुगतान विधि",
-      ne:"電子メールアドレス"
+      ne: "भुक्तानी विधि"
     },
-    orderitems:{
+    orderitems: {
       en: "ORDER ITEMS",
-      bn: "電郵地址",
+      bn: "আইটেম অর্ডার করুন",
       hi: "आइटम्स ऑर्डर करें",
-      ne:"電子メールアドレス"
+      ne: "वस्तुहरू अर्डर गर्नुहोस्"
     },
     ordersummary: {
-        en: "ORDER SUMMARY",
-        bn: "姓氏",
-        hi: "ऑर्डर का सारांश",
-        ne:"電子メールアドレス"
+      en: "ORDER SUMMARY",
+      bn: "অর্ডার সংক্ষেপ",
+      hi: "ऑर्डर का सारांश",
+      ne: "अर्डर संक्षेप"
     },
     placeorder: {
-        en: "PLACE ORDER",
-        bn: "名字",
-        hi: "प्लेस ऑर्डर",
-        ne:"電子メールアドレス"
+      en: "PLACE ORDER",
+      bn: "অর্ডার করুন",
+      hi: "प्लेस ऑर्डर",
+      ne: "अर्डर गर्नुहोस्"
     },
     myorders: {
-        en: "MY ORDERS",
-        bn: "姓氏",
-        hi: "मेरे ऑर्डर्स",
-        ne:"電子メールアドレス"
+      en: "MY ORDERS",
+      bn: "আমার অর্ডারগুলি",
+      hi: "मेरे ऑर्डर्स",
+      ne: "मेरो अर्डरहरू"
     },
     orderid: {
-        en: "Order Id",
-        bn: "姓氏",
-        hi: "ऑर्डर आईडी",
-        ne:"電子メールアドレス"
+      en: "Order Id",
+      bn: "অর্ডার আইডি",
+      hi: "ऑर्डर आईडी",
+      ne: "अर्डर आइडी"
     },
     orderdate: {
-        en: "Order Date",
-        bn: "電郵地址",
-        hi: "ऑर्डर दिनांक",
-        ne:"電子メールアドレス"
+      en: "Order Date",
+      bn: "অর্ডার তারিখ",
+      hi: "ऑर्डर दिनांक",
+      ne: "अर्डर मिति"
     },
     paidstatus: {
-        en: "Paid Status",
-        bn: "地址 (第一行)",
-        hi: "सशुल्क स्थिति",
-        ne:"電子メールアドレス"
+      en: "Paid Status",
+      bn: "পেইড স্ট্যাটাস",
+      hi: "सशुल्क स्थिति",
+      ne: "भुक्तान अवस्था"
     },
-    deliverystatus:{
+    deliverystatus: {
       en: "Delivery Status",
-      bn: "電郵地址",
+      bn: "বিতরণের স্থিতি",
       hi: "वितरण स्थिति",
-      ne:"電子メールアドレス"
+      ne: "प्रस्तुति स्थिति"
     },
     itemsordered: {
-        en: "Items Ordered",
-        bn: "姓氏",
-        hi: "आइटम्स ऑर्डर किए गए", 
-        ne:"電子メールアドレス"
+      en: "Items Ordered",
+      bn: "অর্ডারকৃত আইটেমগুলি",
+      hi: "आइटम्स ऑर्डर किए गए",
+      ne: "अर्डर गरिएका वस्तुहरू"
     },
-};
+  };
+  
