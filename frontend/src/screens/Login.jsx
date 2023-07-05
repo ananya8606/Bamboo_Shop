@@ -25,11 +25,9 @@ const Login = () => {
     }
     console.log('register'+ userRegister.loading);
     console.log('login'+loading);
-    if(userRegister.loading) 
-    window.location.reload();
-    else if(loading)
+    if(loading)
     history('/');
-  }, [dispatch,userInformation,history,loading,userRegister.loading, error]);
+  }, [dispatch,history,loading,error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
