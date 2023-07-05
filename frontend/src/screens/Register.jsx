@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { register, userRegisterClear } from '../reducers/userReducers';
 import Loading from '../components/Loading';
 import Message from '../components/Message';
-import { Link, useLocation,useNavigate} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { r } from "../Utils/translateLibrary/register";
 
 const Register = () => {
@@ -20,6 +20,7 @@ const Register = () => {
       if (password !== passwordagain) {
         setMessage('Passwords do not match')
       } else {
+        setMessage('User Registered Successfully!')
         dispatch(register({name:username,email:email,password:password,funcNumber:'formfillup'}))
       }
     }
@@ -28,17 +29,11 @@ const Register = () => {
     const { userInformation } = userLogin
     const userRegister = useSelector((state) => state.user.userRegister)
     const { loading,error } = userRegister
-    const location=useLocation();
-    const redirect = location.search && location.search.split('=')[1]
-   const history=useNavigate();
     useEffect(() => {
       if (error) {
         dispatch(userRegisterClear())
       }
-      userInformation && redirect
-      ? history.push(redirect)
-      : userInformation && window.history.back()
-    }, [history, userInformation])
+    }, [error])
     return (
       <div className='form-outer'>
         <div className='form-outermost'>
