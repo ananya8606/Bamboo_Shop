@@ -68,7 +68,8 @@ const OrderScreen = () => {
         taxPrice,
         totalPrice,
         isDelivered:true,
-        isPaid:isPaid
+        isPaid:isPaid,
+        paymentInfo:cart.paymentInfo,
   })
     );
   };
