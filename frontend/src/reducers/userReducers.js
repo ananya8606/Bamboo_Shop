@@ -97,10 +97,7 @@ export const userSlice = createSlice({
   },
     userRegister:{
     loading:false, 
-    error:null, 
-    userInformation: localStorage.getItem('userInformation')
-    ? JSON.parse(localStorage.getItem('userInformation'))
-    : null
+    error:null
   },
     userDetails:{
     loading:false, 
