@@ -62,9 +62,11 @@ const Login = () => {
         let token = credential.accessToken;
         const user = result.user;
         dispatch(register({name:user.displayName,email: user.email,  password:'jpt', funcNumber:'googlesignin'}));
-        window.location.href = 'https://bamboo-shop.onrender.com/login';
-        window.location.reload();
       })
+       .then(() => {
+          window.location.href = 'https://bamboo-shop.onrender.com/login';
+          window.location.reload();
+        });
       .catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
