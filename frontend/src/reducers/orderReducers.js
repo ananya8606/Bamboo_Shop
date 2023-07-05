@@ -45,7 +45,7 @@ export const createOrder = createAsyncThunk(
         },
       };
       console.log(order)
-      const { data } = await api.post(`/api/orders`, order, config);
+      const { data } = await api.post(`https://bamboo-shop-backend.onrender.com/api/orders`, order, config);
 
       return data;
     } catch (error) {
@@ -74,7 +74,7 @@ export const payOrder = createAsyncThunk(
         },
       };
 
-      const { data } = await api.put(`/api/orders/admin/pay/${id}`, {}, config);
+      const { data } = await api.put(`https://bamboo-shop-backend.onrender.com/api/orders/admin/pay/${id}`, {}, config);
 
       return data;
     } catch (error) {
@@ -103,7 +103,7 @@ export const deliverOrder = createAsyncThunk(
       };
 
       const { data } = await api.put(
-        `/api/orders/admin/delivery/${id}`,
+        `https://bamboo-shop-backend.onrender.com/api/orders/admin/delivery/${id}`,
         {},
         config
       );
@@ -134,7 +134,7 @@ export const listMyOrders = createAsyncThunk(
         },
       };
 
-      const { data } = await api.get(`/api/orders/myorders`, config);
+      const { data } = await api.get(`https://bamboo-shop-backend.onrender.com/api/orders/myorders`, config);
 
       return data;
     } catch (error) {
@@ -160,7 +160,7 @@ export const listOrders = createAsyncThunk(
           Authorization: `Bearer ${userInformation.token}`,
         },
       };
-      const { data } = await api.get(`/api/orders/admin/allorders`, config);
+      const { data } = await api.get(`https://bamboo-shop-backend.onrender.com/api/orders/admin/allorders`, config);
       return data;
     } catch (error) {
       const message =
