@@ -3,9 +3,8 @@ import ImageCarousel from '../components/ImageCarousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../reducers/productReducers';
 import Loading from '../components/Loading';
-import ProductCard from '../components/ProductCard';
 import { footer } from '../Utils/translateLibrary/footer';
-
+import PaginationComponent from '../components/PaginationComponent';
 const Home = () => {
   const dispatch = useDispatch();
 
@@ -27,13 +26,9 @@ const Home = () => {
       ) : (
         <div className='container'>
           <p className='top-picks'>{footer.allproducts[language]}</p>
-          <div className='shopping-items'>
-            {products &&
-              products.map((item) => (
-                <ProductCard key={item._id} product={item} />
-              ))}
+         
+            <PaginationComponent data={products} itemsPerPage={10} />
           </div>
-        </div>
       )}
     </div>
   );
