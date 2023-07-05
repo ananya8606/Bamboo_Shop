@@ -53,7 +53,7 @@ const OrderScreen = () => {
   }, [userInfo, success, navigate, dispatch]);
 
   const placeOrderHandler = () => {
-    const isPaid='true';
+    var isPaid='true';
     if(cart.paymentMethod=='Pay on Delivery')
     isPaid='false';
     else if(cart.paymentMethod=='Credit Card')
