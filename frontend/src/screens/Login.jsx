@@ -28,7 +28,7 @@ const Login = () => {
     if (loading) {
       window.location.reload();
     } 
-  }, [dispatch, history, loading, error]);
+  }, [dispatch,loading, error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
