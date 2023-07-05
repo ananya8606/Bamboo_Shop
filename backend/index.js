@@ -67,6 +67,13 @@ structure to distinguish them from server-side code files.*/
 }
 
 app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://bamboo-shop.onrender.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+app.use((req, res, next) => {
   const error = new Error(`Not found -${req.originalUrl}`)
   res.status(404)
   next(error)
