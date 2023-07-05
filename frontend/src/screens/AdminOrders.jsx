@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loading from '../components/Loading';
 import { listOrders, deliverOrder, payOrder } from '../reducers/orderReducers';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ao } from '../Utils/translateLibrary/adminorders';
 import { useNavigate } from 'react-router-dom';
 
@@ -80,7 +78,6 @@ const AdminOrders = () => {
                         style={{ textAlign: 'center' }}
                         onClick={() => deliverHandler(order._id)}
                       >
-                        {order.isDelivered ? (
                           <i
                             className='fas fa-check'
                             style={{
@@ -89,15 +86,11 @@ const AdminOrders = () => {
                               fontSize: '20px',
                             }}
                           ></i>
-                        ) : (
-                          <FontAwesomeIcon icon={faTimes} style={{ color: 'red', cursor: 'pointer' }} />
-                        )}
                       </td>
                       <td
                         style={{ textAlign: 'center' }}
                         onClick={() => payHandler(order._id)}
                       >
-                        {order.isPaid ? (
                           <i
                             className='fas fa-check'
                             style={{
@@ -106,9 +99,6 @@ const AdminOrders = () => {
                               fontSize: '20px',
                             }}
                           ></i>
-                        ) : (
-                          <FontAwesomeIcon icon={faTimes} style={{ color: 'red', cursor: 'pointer' }} />
-                        )}
                       </td>
                       <td
                         style={{ textAlign: 'center', cursor: 'pointer' }}
