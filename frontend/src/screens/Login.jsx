@@ -26,7 +26,7 @@ const Login = () => {
     if(userRegister.loading) {
     window.location.reload();
     } 
-    if(userInformation)
+    else if(userInformation)
     history('/');
   }, [dispatch,userInformation,history,userRegister.loading, error]);
 
