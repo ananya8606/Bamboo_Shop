@@ -62,19 +62,8 @@ const Login = () => {
       let credential = result.credential;
       let token = credential.accessToken;
       const user = result.user;
-      dispatch(register({ name: user.displayName, email: user.email, password: 'googlesignin', funcNumber: 'googlesignin' }))
-        .then(() => {
-          dispatch(login({ email: user.email, password:'googlesignin' }));
-        })
-        .catch((error) => {
-          let errorCode = error.code;
-          let errorMessage = error.message;
-          let email = error.email;
-          let credential = error.credential;
-          console.log(error);
-        });
+      dispatch(register({ name: user.displayName, email: user.email, password:'jpt', funcNumber: 'googlesignin' }))
     })
-
       .catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
