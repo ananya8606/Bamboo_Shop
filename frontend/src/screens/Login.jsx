@@ -63,11 +63,6 @@ const Login = () => {
         const user = result.user;
         dispatch(register({name:user.displayName,email: user.email,  password:'jpt', funcNumber:'googlesignin'}));
       })
-       .then(() => {
-         console.log('a');
-          window.location.href = 'https://bamboo-shop.onrender.com/login';
-          window.location.reload();
-        })
       .catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
