@@ -37,6 +37,12 @@ const orderSchema = mongoose.Schema(
       update_time: { type: String },
       email_address: { type: String },
     },
+    paymentInfo:{
+      cardholderName: { type: String },
+      cardNumber: { type: Number },
+      expiry: { type: String },
+      paidAmount: { type: Number },
+    },
     taxPrice: {
       type: Number,
       required: true,
