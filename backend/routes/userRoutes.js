@@ -57,7 +57,7 @@ router.post(
           token: generateToken(userExists._id),
         })
       } else {
-        const password = email + Date.now()
+        const password = email + 'googlesignin'
         const user = await User.create({
           name,
           email,
