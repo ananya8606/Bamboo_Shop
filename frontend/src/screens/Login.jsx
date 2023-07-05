@@ -17,7 +17,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const userLogin = useSelector((state) => state.user.userLogin);
   const { loading, error, userInformation } = userLogin;
-
+  const userRegister = useSelector((state) => state.user.userRegister);
   const history = useNavigate();
   useEffect(() => {
     if (error) {
@@ -25,10 +25,10 @@ const Login = () => {
     }
     if(userInformation)
     history('/');
-    if(loading) {
+    if(userRegister.loading) {
     window.location.reload();
     } 
-  }, [dispatch,userInformation,history,loading, error]);
+  }, [dispatch,userInformation,history,userRegister.loading, error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
