@@ -17,18 +17,23 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const location = useLocation();
+  const redirect = location.search && location.search.split('=')[1];
   const userLogin = useSelector((state) => state.user.userLogin);
   const { loading, error, userInformation } = userLogin;
+  const userRegister = useSelector((state) => state.user.userRegister);
+  const { userInformation:userInfo } = userRegister;
+  
   const history = useNavigate();
   useEffect(() => {
     if (error) {
       dispatch(userLoginClear());
-      history('/login');
     }
-    if (userInformation) {
-      history('/');
-    } 
-  }, [dispatch, history, userInformation, error]);
+    if (userInformation && (redirect || window.history.length <= 2)) {
+      history(redirect || '/');
+    } else if (userInformation) {
+      window.history.back();
+    }
+  }, [dispatch, history, userInformation, error, redirect]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,6 +65,9 @@ const Login = () => {
         let token = credential.accessToken;
         const user = result.user;
         dispatch(register({name:user.displayName,email: user.email,  password:'jpt', funcNumber:'googlesignin'}));
+        if (userInfo) {
+        history('/');
+    }
       })
       .catch((error) => {
         let errorCode = error.code;
