@@ -49,8 +49,7 @@ const preloadedState = {
   },
     userRegister:{
     loading:false, 
-    error:null, 
-    userInformation: userInfoFromStorage 
+    error:null
   },
     userDetails:{
     loading:false, 
