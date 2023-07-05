@@ -2,13 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../api';
 
 export const register = createAsyncThunk('user/register', async ({ name, email, password, funcNumber }) => {
-  const response = await api.post(`/api/users/register/${funcNumber}`, { name, email, password });
+  const response = await api.post(`https://bamboo-shop-backend.onrender.com/api/users/register/${funcNumber}`, { name, email, password });
   localStorage.setItem('userInformation', JSON.stringify(response.data));
   return response.data;
 });
 
 export const login = createAsyncThunk('user/login', async ({ email, password }) => {
-  const response = await api.post('/api/users/login', { email, password });
+  const response = await api.post('https://bamboo-shop-backend.onrender.com/api/users/login', { email, password });
   localStorage.setItem('userInformation', JSON.stringify(response.data));
   return response.data;
 });
@@ -22,7 +22,7 @@ export const listUsers = createAsyncThunk('user/listUsers', async (_, { getState
     },
   };
 
-  const response = await api.get('/api/users', config);
+  const response = await api.get('https://bamboo-shop-backend.onrender.com/api/users', config);
   return response.data;
 });
 
@@ -35,7 +35,7 @@ export const deleteUser = createAsyncThunk('user/deleteUser', async (id, { getSt
     },
   };
 
-  await api.delete(`/api/users/${id}`, config);
+  await api.delete(`https://bamboo-shop-backend.onrender.com/api/users/${id}`, config);
   return id;
 });
 
@@ -49,7 +49,7 @@ export const getUserDetails = createAsyncThunk('user/getUserDetails', async (id,
   };
 
   try {
-    const response = await api.get(`/api/users/user/${id}`, config);
+    const response = await api.get(`https://bamboo-shop-backend.onrender.com/api/users/user/${id}`, config);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -66,7 +66,7 @@ export const updateLanguage = createAsyncThunk('user/updateLanguage', async (lan
     },
   };
 
-  const response = await api.patch('/api/user/language', { language }, config);
+  const response = await api.patch('https://bamboo-shop-backend.onrender.com/api/user/language', { language }, config);
   return response.data;
 });
 
@@ -80,7 +80,7 @@ export const updateUserProfile = createAsyncThunk('user/updateUserProfile', asyn
     },
   };
 
-  const response = await api.put('/api/users/updateUser', user, config);
+  const response = await api.put('https://bamboo-shop-backend.onrender.com/api/users/updateUser', user, config);
   console.log(response)
   return response.data;
 });
