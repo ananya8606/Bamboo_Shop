@@ -21,7 +21,7 @@ import ProductEdit from './screens/ProductEdit';
 import UserAccountScreen from './screens/UserAccountScreen';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-
+import PaytmPaymentGateway from './components/PaytmPaymentGateway';
 function App() {
   return (
     <Router>
