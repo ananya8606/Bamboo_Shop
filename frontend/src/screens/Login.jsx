@@ -27,7 +27,7 @@ const Login = () => {
     if (userInformation) {
       history('/');
     } else {
-      window.history.back();
+      history('/login');
     }
   }, [dispatch, history, userInformation, error]);
 
