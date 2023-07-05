@@ -20,9 +20,7 @@ const Login = () => {
   const redirect = location.search && location.search.split('=')[1];
   const userLogin = useSelector((state) => state.user.userLogin);
   const { loading, error, userInformation } = userLogin;
-  const userRegister = useSelector((state) => state.user.userRegister);
-  const { userInformation:userInfo } = userRegister;
-  
+
   const history = useNavigate();
   useEffect(() => {
     if (error) {
@@ -65,10 +63,6 @@ const Login = () => {
         let token = credential.accessToken;
         const user = result.user;
         dispatch(register({name:user.displayName,email: user.email,  password:'jpt', funcNumber:'googlesignin'}));
-        if (userInfo) {
-        history('/');
-        window.location.reload();
-    }
       })
       .catch((error) => {
         let errorCode = error.code;
