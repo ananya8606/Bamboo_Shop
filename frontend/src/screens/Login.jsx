@@ -23,11 +23,11 @@ const Login = () => {
     if (error) {
       dispatch(userLoginClear());
     }
-    if(userInformation)
-    history('/');
     if(userRegister.loading) {
     window.location.reload();
     } 
+    if(userInformation)
+    history('/');
   }, [dispatch,userInformation,history,userRegister.loading, error]);
 
   const handleSubmit = (e) => {
