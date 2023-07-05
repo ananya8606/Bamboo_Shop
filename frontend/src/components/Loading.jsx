@@ -2,7 +2,7 @@ import React from 'react'
 const Loading = () => {
   return (
     <div className='loader'>
-      <img src='/Images/5qybmy.gif' alt='' />
+      <img src='/Images/loading-gif-icon-9.jpg' alt='' />
     </div>
   )
 }
