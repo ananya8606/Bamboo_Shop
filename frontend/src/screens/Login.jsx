@@ -24,7 +24,7 @@ const Login = () => {
       dispatch(userLoginClear());
     }
     if (loading) {
-    history('/');
+    window.location.reload();
     } 
   }, [dispatch,loading, error]);
 
