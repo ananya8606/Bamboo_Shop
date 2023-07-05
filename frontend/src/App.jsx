@@ -46,6 +46,7 @@ function App() {
         <Route path="/admin/ProductCreate" element={<ProductCreate />} exact />
         <Route path="/admin/ProductEdit/:id" element={<ProductEdit />} exact />
         <Route path="/my-account/:id" element={<UserAccountScreen />} exact />
+        <Route path="/paytm-payment-gateway" element={<PaytmPaymentGateway />} exact />
       </Routes>
       <Footer />
     </Router>
