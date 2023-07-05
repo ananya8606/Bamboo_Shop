@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link,useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, register,userLoginClear } from '../reducers/userReducers';
 import Message from '../components/Message';
@@ -11,12 +11,10 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const dispatch = useDispatch();
-
   const settings = useSelector((state) => state.settings);
   const { language } = settings;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const redirect = location.search && location.search.split('=')[1];
   const userLogin = useSelector((state) => state.user.userLogin);
   const { loading, error, userInformation } = userLogin;
 
@@ -26,7 +24,7 @@ const Login = () => {
       dispatch(userLoginClear());
     }
     if (loading) {
-      window.location.reload();
+    history('/');
     } 
   }, [dispatch,loading, error]);
 
