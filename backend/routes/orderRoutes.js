@@ -17,6 +17,7 @@ router.post(
       orderItems,
       shippingAddress,
       paymentMethod,
+      paymentInfo,
       itemsPrice,
       taxPrice,
       shippingPrice,
@@ -32,6 +33,7 @@ router.post(
         user: req.user._id,
         shippingAddress,
         paymentMethod,
+        paymentInfo,
         itemsPrice,
         taxPrice,
         shippingPrice,
@@ -100,7 +102,6 @@ router.put(
   asyncHandler(async (req, res) => {
     const order = await Order.findOne({ _id: req.params.id })
     if (order) {
-      order.isDelivered = !order.isDelivered
       console.log(order.orderItems)
       const func = order.orderItems.map(async (item) => {
         const productinitial = await Product.findOne({ _id: item.product })
@@ -129,7 +130,6 @@ router.put(
   asyncHandler(async (req, res) => {
     const order = await Order.findOne({ _id: req.params.id })
     if (order) {
-      order.isPaid = !order.isPaid
       await order.save()
       res.status(201).json('Success')
     } else {
