@@ -16,7 +16,6 @@ const Login = () => {
   const { language } = settings;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const location = useLocation();
   const redirect = location.search && location.search.split('=')[1];
   const userLogin = useSelector((state) => state.user.userLogin);
   const { loading, error, userInformation } = userLogin;
@@ -26,12 +25,10 @@ const Login = () => {
     if (error) {
       dispatch(userLoginClear());
     }
-    if (userInformation && (redirect || window.history.length <= 2)) {
-      history(redirect || '/');
-    } else if (userInformation) {
-      window.history.back();
-    }
-  }, [dispatch, history, userInformation, error, redirect]);
+    if (userInformation) {
+      history('/');
+    } 
+  }, [dispatch, history, userInformation, error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
