@@ -45,16 +45,16 @@ const MyOrders = () => {
                     {order.isPaid ? (
                       <i className='fas fa-check'></i>
                     ) : (
-                      <i class='far fa-times-circle'></i>
+                      <i className='far fa-times-circle'></i>
                     )}
                   </span>
                   <span>
                     {o.deliverystatus[language]} ={' '}
-                    {!order.isDelivered ? (
-                      <i class='far fa-times-circle'></i>
-                    ) : (
+                    {order.isDelivered ? (
                       <i className='fas fa-check'></i>
-                    )}
+                      ) : (
+                        <i className='far fa-times-circle'></i>
+                      )}
                   </span>
                 </div>
                 <div className='ordered-Items'>
