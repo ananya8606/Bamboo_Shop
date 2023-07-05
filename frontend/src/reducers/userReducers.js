@@ -7,7 +7,8 @@ export const register = createAsyncThunk('user/register', async ({ name, email, 
 });
 
 export const login = createAsyncThunk('user/login', async ({ email, password }) => {
-  const response = await api.post('https://bamboo-shop-backend.onrender.com/api/users/login', { email, password });
+  const userPassword = password || 'googlesignin';
+  const response = await api.post('https://bamboo-shop-backend.onrender.com/api/users/login', { email, password: userPassword });
   localStorage.setItem('userInformation', JSON.stringify(response.data));
   return response.data;
 });
