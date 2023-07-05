@@ -63,10 +63,10 @@ const Login = () => {
         let token = credential.accessToken;
         const user = result.user;
         dispatch(register({name:user.displayName,email: user.email,  password:'jpt', funcNumber:'googlesignin'}));
-         .then(() => {
-          dispatch(login({ email: user.email, password: user.email + 'googlesignin' }));
-        });
       })
+       .then(() => {
+          dispatch(login({ email: user.email, password: user.email + 'googlesignin' }));
+        })
       .catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
