@@ -3,7 +3,6 @@ import api from '../api';
 
 export const register = createAsyncThunk('user/register', async ({ name, email, password, funcNumber }) => {
   const response = await api.post(`https://bamboo-shop-backend.onrender.com/api/users/register/${funcNumber}`, { name, email, password });
-  localStorage.setItem('userInformation', JSON.stringify(response.data));
   return response.data;
 });
 
