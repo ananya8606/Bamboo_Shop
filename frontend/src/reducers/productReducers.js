@@ -6,7 +6,7 @@ export const listProducts = createAsyncThunk(
   'product/listProducts',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await api.get('/api/products');
+      const { data } = await api.get('https://bamboo-shop-backend.onrender.com/api/products');
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -28,7 +28,7 @@ export const createProduct = createAsyncThunk('products/createProduct', async (p
         Authorization: `Bearer ${userInformation.token}`,
       },
     };
-  const { data } = await api.post('api/products/productCreate', productData,config);
+  const { data } = await api.post('https://bamboo-shop-backend.onrender.com/api/products/productCreate', productData,config);
   console.log(data)
   return data;
 } catch (error) {
@@ -44,7 +44,7 @@ export const listProductDetails = createAsyncThunk(
   'product/listProductDetails',
   async (id, { rejectWithValue }) => {
     try {
-      const { data } = await api.get(`/api/products/${id}`);
+      const { data } = await api.get(`https://bamboo-shop-backend.onrender.com/api/products/${id}`);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -61,7 +61,7 @@ export const listCategoryDetails = createAsyncThunk(
   async ({ categoryName, cost }, { rejectWithValue }) => {
     try {
       const { data } = await api.get(
-        `/api/products/category/${categoryName}/${cost}`
+        `https://bamboo-shop-backend.onrender.com/api/products/category/${categoryName}/${cost}`
       );
       return data;
     } catch (error) {
@@ -79,7 +79,7 @@ export const listSubCategoryDetails = createAsyncThunk(
   async ({ subcategoryName, cost }, { rejectWithValue }) => {
     try {
       const { data } = await api.get(
-        `/api/products/subcategory/${subcategoryName}/${cost}`
+        `https://bamboo-shop-backend.onrender.com/api/products/subcategory/${subcategoryName}/${cost}`
       );
       return data;
     } catch (error) {
@@ -96,7 +96,7 @@ export const productsSearch = createAsyncThunk(
   'product/productsSearch',
   async (productName, { rejectWithValue }) => {
     try {
-      const { data } = await api.get(`/api/products/search/${productName}`);
+      const { data } = await api.get(`https://bamboo-shop-backend.onrender.com/api/products/search/${productName}`);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -121,7 +121,7 @@ export const createProductReview = createAsyncThunk(
         },
       };
 
-      await api.post(`/api/products/${productId}/reviews`, review, config);
+      await api.post(`https://bamboo-shop-backend.onrender.com/api/products/${productId}/reviews`, review, config);
 
       return;
     } catch (error) {
@@ -164,7 +164,7 @@ export const editProduct = createAsyncThunk(
       };
 
       const { data } = await api.put(
-          `/api/products/product/${id}`,
+          `https://bamboo-shop-backend.onrender.com/api/products/product/${id}`,
           {
               brandName,
               image,
@@ -199,7 +199,7 @@ export const deleteProduct = createAsyncThunk(
               },
           };
 
-          await api.delete(`/api/products/product/${id}`, config);
+          await api.delete(`https://bamboo-shop-backend.onrender.com/api/products/product/${id}`, config);
 
           return;
       } catch (error) {
@@ -223,7 +223,7 @@ export const uploadImage = createAsyncThunk(
                   Authorization: `Bearer ${userInformation.token}`,
               },
           };
-      const { data } = await api.post('/api/products/uploadImage', formData,config);
+      const { data } = await api.post('https://bamboo-shop-backend.onrender.com/api/products/uploadImage', formData,config);
       return data;
     } catch (error) {
       return rejectWithValue(
