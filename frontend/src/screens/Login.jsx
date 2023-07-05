@@ -25,9 +25,9 @@ const Login = () => {
     }
     console.log('register'+ userRegister.loading);
     console.log('login'+loading);
-    if(userRegister.loading && loading) 
+    if(userRegister.loading) 
     window.location.reload();
-    else if(userInformation && loading)
+    else if(loading)
     history('/');
   }, [dispatch,userInformation,history,loading,userRegister.loading, error]);
 
