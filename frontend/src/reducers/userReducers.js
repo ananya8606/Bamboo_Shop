@@ -134,7 +134,7 @@ export const userSlice = createSlice({
     },
     userRegisterClear: (state) => {
       state.userRegister.error = null;
-      state.userRegister.userInformation=null;
+      state.userLogin.userInformation=null;
       localStorage.removeItem('userInformation');
     },
     userLoginClear: (state) => {
@@ -158,7 +158,7 @@ export const userSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.userRegister.loading = false;
-        state.userRegister.userInformation = action.payload;
+        state.Login.userInformation = action.payload;
         state.userRegister.error = null;
       })
       .addCase(register.rejected, (state, action) => {
