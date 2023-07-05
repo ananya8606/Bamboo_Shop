@@ -25,8 +25,6 @@ const Register = () => {
       }
     }
     const dispatch = useDispatch()
-    const userLogin = useSelector((state) => state.user.userLogin)
-    const { userInformation } = userLogin
     const userRegister = useSelector((state) => state.user.userRegister)
     const { loading,error } = userRegister
     useEffect(() => {
