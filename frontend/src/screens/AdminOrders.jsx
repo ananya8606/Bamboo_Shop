@@ -30,11 +30,11 @@ const AdminOrders = () => {
   }, [userInfo, history, dispatch]);
 
   const deliverHandler = (id) => {
-    dispatch(deliverOrder({id:id}));
+    dispatch(deliverOrder(id));
   };
 
   const payHandler = (id) => {
-    dispatch(payOrder({id:id}));
+    dispatch(payOrder(id));
   };
 
   const detailHandler = async (id) => {
