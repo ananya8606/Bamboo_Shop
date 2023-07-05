@@ -62,7 +62,7 @@ const Login = () => {
         let token = credential.accessToken;
         const user = result.user;
         dispatch(register({name:user.displayName,email: user.email,  password:'jpt', funcNumber:'googlesignin'}));
-        location.reload();
+        window.reload();
       })
       .catch((error) => {
         let errorCode = error.code;
