@@ -29,7 +29,7 @@ const Login = () => {
     } else {
       window.history.back();
     }
-  }, [dispatch, history, userInformation, error, redirect]);
+  }, [dispatch, history, userInformation, error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
