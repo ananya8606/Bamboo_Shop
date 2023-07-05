@@ -12,7 +12,7 @@ connectDB()
 const app = express()
 
 const corsOptions = {
-  origin: "http://localhost:5173" // frontend URI (ReactJS)
+  origin: "https://bamboo-shop.onrender.com/" // frontend URI (ReactJS)
 }
 
 /* Moved the app.use(cors(corsOptions)) middleware above app.use(express.json()) to ensure
