@@ -15,6 +15,8 @@ const OrderDetails = () => {
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.user.userLogin)
   const { userInformation: userInfo } = userLogin
+  const cart = useSelector((state) => state.cart);
+  const {paymentInfo} = cart;
   const {id}=useParams();
   const history = useNavigate();
   useEffect(() => {
@@ -27,7 +29,7 @@ const OrderDetails = () => {
     const loadData = async () => {
       setLoading(true)
       const { data } = await api.get(
-        `https://bamboo-shop-backend.onrender.com/api/orders/admin/order/${id}`,
+        `/api/orders/admin/order/${id}`,
         config
       )
       setOrderdetails(data)
@@ -63,6 +65,10 @@ const OrderDetails = () => {
                 <div className='orderscreen-controller'>
                   <span>{s.paymentmethod[language]}</span>
                   <span className='gd'>{orderdetails.paymentMethod}</span>
+                  <span className='gd'>Cardholder Name:{paymentInfo.cardholderName} </span>
+                  <span className='gd'>Card Number:{paymentInfo.cardNumber} </span>
+                  <span className='gd'>Expiry Date:{paymentInfo.expiry} </span>
+                  <span className='gd'>Paid Amount:{paymentInfo.paidAmount} </span>
                 </div>
                 <div className='underline'></div>
                 <div className='orderscreen-controller'>
