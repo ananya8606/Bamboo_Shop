@@ -58,15 +58,23 @@ const Login = () => {
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then((result) => {
-        let credential = result.credential;
-        let token = credential.accessToken;
-        const user = result.user;
-        dispatch(register({name:user.displayName,email: user.email,  password:'jpt', funcNumber:'googlesignin'}));
-      })
-       .then(() => {
+       .then((result) => {
+      let credential = result.credential;
+      let token = credential.accessToken;
+      const user = result.user;
+      dispatch(register({ name: user.displayName, email: user.email, password: 'jpt', funcNumber: 'googlesignin' }))
+        .then(() => {
           dispatch(login({ email: user.email, password: user.email + 'googlesignin' }));
         })
+        .catch((error) => {
+          let errorCode = error.code;
+          let errorMessage = error.message;
+          let email = error.email;
+          let credential = error.credential;
+          console.log(error);
+        });
+    })
+
       .catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
