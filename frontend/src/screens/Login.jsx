@@ -23,12 +23,11 @@ const Login = () => {
   useEffect(() => {
     if (error) {
       dispatch(userLoginClear());
+      history('/login');
     }
     if (userInformation) {
       history('/');
-    } else {
-      history('/login');
-    }
+    } 
   }, [dispatch, history, userInformation, error]);
 
   const handleSubmit = (e) => {
