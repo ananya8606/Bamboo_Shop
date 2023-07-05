@@ -25,8 +25,7 @@ const Login = () => {
     if (error) {
       dispatch(userLoginClear());
     }
-    if (userInformation) {
-      history('/');
+    if (loading) {
       window.location.reload();
     } 
   }, [dispatch, history, userInformation, error]);
