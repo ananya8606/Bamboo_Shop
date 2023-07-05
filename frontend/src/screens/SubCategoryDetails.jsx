@@ -63,13 +63,7 @@ const CategoryDetails = () => {
           <br />
         </div>
         {loading && <Loading />}
-
-        <div className='category-content'>
-          {products.length > 0 &&
-            products.map((filter) => (
-              <ProductCard key={filter._id} product={filter} />
-            ))}
-        </div>
+       {products.length > 0 && <PaginationComponent data={products} />}
       </div>
     </div>
   )
