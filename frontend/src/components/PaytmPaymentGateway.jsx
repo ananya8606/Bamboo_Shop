@@ -9,8 +9,6 @@ const PaytmPaymentGateway = () => {
   const history = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const orderCreate = useSelector((state) => state.order.orderCreate);
-  const { order} = orderCreate;
   const [formValues, setFormValues] = useState({
     cardholderName: '',
     cardNumber: '',
@@ -60,7 +58,6 @@ const PaytmPaymentGateway = () => {
         paidAmount:totalPrice,
       };  
       dispatch(savePaymentInfo(paymentInfo));
-      order.isPaid=true;
       history('/placeorder');
     } else {
       setShowErrorMessage(true);
