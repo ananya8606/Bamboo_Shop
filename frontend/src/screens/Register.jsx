@@ -24,10 +24,8 @@ const Register = () => {
       }
     }
     const dispatch = useDispatch()
-    const userRegister = useSelector((state) => state.user.userRegister)
-    const { loading, error, userInformation } = userRegister
     const userLogin = useSelector((state) => state.user.userLogin)
-    const { userInformation: userInfo } = userLogin
+    const { userInformation } = userLogin
     const location=useLocation();
    const history=useNavigate();
     useEffect(() => {
