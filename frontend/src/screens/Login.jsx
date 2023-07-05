@@ -23,10 +23,12 @@ const Login = () => {
     if (error) {
       dispatch(userLoginClear());
     }
-    if (loading) {
+    if(userInformation)
+    history('/');
+    if(loading) {
     window.location.reload();
     } 
-  }, [dispatch,loading, error]);
+  }, [dispatch,userInformation,history,loading, error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
