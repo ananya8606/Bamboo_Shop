@@ -5,7 +5,7 @@ import api from '../api';
 export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async ({ id, qty }, { getState }) => {
-    const { data } = await api.get(`https://bamboo-shop-backend.onrender.com/api/products/${id}`);
+    const { data } = await api.get(`/api/products/${id}`);
     const product = {
       product: data._id,
       name: data.brandName,
@@ -68,16 +68,33 @@ export const savePaymentMethod = createAsyncThunk(
   }
 );
 
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     cartItems: [],
     shippingAddress:null,
     paymentMethod: null,
+    paymentInfo:{
+      cardholderName:null,
+      cardNumber:null,
+      expiry:null,
+      paidAmount:null
+      }
   },
   reducers: {
     cartClearItems: (state) => {
       state.cartItems = [];
+    },
+    savePaymentInfo: (state, action) => {
+      const { cardholderName, cardNumber, expiry, cvv, paidAmount } = action.payload;
+      state.paymentInfo = {
+        cardholderName,
+        cardNumber,
+        expiry,
+        cvv,
+        paidAmount,
+      };
     },
   },
   extraReducers: (builder) => {
@@ -97,6 +114,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { cartClearItems } = cartSlice.actions;
+export const { cartClearItems ,savePaymentInfo} = cartSlice.actions;
 const cartReducer = cartSlice.reducer;
 export default cartReducer;
