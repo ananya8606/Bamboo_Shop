@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listCategoryDetails } from '../reducers/productReducers';
 import Loading from '../components/Loading';
 import { y } from '../Utils/translateLibrary/category';
-
+import PaginationComponent from '../components/PaginationComponentCategory';
 const CategoryDetails = () => {
   const  { id: productId } = useParams();
   const dispatch = useDispatch();
@@ -57,10 +57,9 @@ const CategoryDetails = () => {
         </div>
         {loading && <Loading />}
 
-        <div className='category-content'>
-          {products.length > 0 &&
-            products.map((filter) => <ProductCard key={filter._id} product={filter} />)}
-        </div>
+        
+          {products.length > 0 && <PaginationComponent data={products} />}
+        
       </div>
     </div>
   );
