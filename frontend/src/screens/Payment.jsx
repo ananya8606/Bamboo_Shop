@@ -32,6 +32,9 @@ const Payment = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
+    if(check1)
+    history('/paytm-payment-gateway'); 
+    else
     history('/placeorder');
   };
 
@@ -70,13 +73,13 @@ const Payment = () => {
           <div className='pay-control'>
             <input
               type='checkbox'
-              name='Paytm'
-              value='Paytm'
+              name='Credit Card '
+              value='Credit Card '
               id='2'
               checked={check1}
               onChange={(e) => onChangeHandler(e, 2)}
             />
-            <span>Paytm</span>
+            <span>Credit Card Payment</span>
           </div>
           {console.log(paymentMethod)}
         </div>
