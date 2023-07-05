@@ -3,12 +3,13 @@ import api from '../api';
 
 export const register = createAsyncThunk('user/register', async ({ name, email, password, funcNumber }) => {
   const response = await api.post(`https://bamboo-shop-backend.onrender.com/api/users/register/${funcNumber}`, { name, email, password });
+  if(funcNumber == 'googlesignin')
+  localStorage.setItem('userInformation', JSON.stringify(response.data));
   return response.data;
 });
 
 export const login = createAsyncThunk('user/login', async ({ email, password }) => {
-  const userPassword = password || 'googlesignin';
-  const response = await api.post('https://bamboo-shop-backend.onrender.com/api/users/login', { email, password: userPassword });
+  const response = await api.post('https://bamboo-shop-backend.onrender.com/api/users/login', { email, password});
   localStorage.setItem('userInformation', JSON.stringify(response.data));
   return response.data;
 });
