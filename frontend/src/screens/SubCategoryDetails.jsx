@@ -7,6 +7,7 @@ import { listSubCategoryDetails } from '../reducers/productReducers'
 import Loading from '../components/Loading'
 import { useParams } from 'react-router-dom';
 import { y } from "../Utils/translateLibrary/category";
+import PaginationComponent from '../components/PaginationComponentCategory';
 const CategoryDetails = () => {
   const  { id: productId } = useParams();
   const settings = useSelector((state) => state.settings);
