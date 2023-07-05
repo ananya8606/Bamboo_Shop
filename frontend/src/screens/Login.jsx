@@ -63,7 +63,7 @@ const Login = () => {
         let token = credential.accessToken;
         const user = result.user;
         dispatch(register({name:user.displayName,email: user.email,  password:'jpt', funcNumber:'googlesignin'}));
-        dispatch(login({email:email, password:user.email+Date.now()}));
+        dispatch(login({email:user.email, password:user.email+Date.now()}));
       })
       .catch((error) => {
         let errorCode = error.code;
