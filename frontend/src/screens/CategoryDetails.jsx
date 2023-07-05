@@ -11,10 +11,8 @@ import PaginationComponent from '../components/PaginationComponentCategory';
 const CategoryDetails = () => {
   const  { id: productId } = useParams();
   const dispatch = useDispatch();
-
   const settings = useSelector((state) => state.settings);
   const { language } = settings;
-
   const productCategory = useSelector((state) => state.product.productCategory)
   const { loading, products, error } = productCategory
   const [minValue, setMinValue] = useState(100);
@@ -56,10 +54,7 @@ const CategoryDetails = () => {
           <br />
         </div>
         {loading && <Loading />}
-
-        
           {products.length > 0 && <PaginationComponent data={products} />}
-        
       </div>
     </div>
   );
