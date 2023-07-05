@@ -67,6 +67,7 @@ const Login = () => {
         dispatch(register({name:user.displayName,email: user.email,  password:'jpt', funcNumber:'googlesignin'}));
         if (userInfo) {
         history('/');
+        window.location.reload();
     }
       })
       .catch((error) => {
