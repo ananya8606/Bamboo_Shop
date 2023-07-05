@@ -158,7 +158,6 @@ export const userSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.userRegister.loading = false;
-        state.Login.userInformation = action.payload;
         state.userRegister.error = null;
       })
       .addCase(register.rejected, (state, action) => {
