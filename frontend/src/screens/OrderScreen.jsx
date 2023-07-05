@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder, orderCreateReset } from '../reducers/orderReducers';
 import { useDispatch, useSelector } from 'react-redux';
-import Message from '../components/Message';
 import Loading from '../components/Loading';
 import { o } from '../Utils/translateLibrary/order';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +13,7 @@ const OrderScreen = () => {
   const userLogin = useSelector((state) => state.user.userLogin);
   const { userInformation: userInfo } = userLogin;
   const cart = useSelector((state) => state.cart);
+  const {paymentInfo} = cart;
   const navigate = useNavigate();
 
   // Calculate prices
@@ -34,7 +34,6 @@ const OrderScreen = () => {
 
   const orderCreate = useSelector((state) => state.order.orderCreate);
   const { order, success, error, loading } = orderCreate;
-
   useEffect(() => {
     if (!cart.shippingAddress.address) {
       navigate('/shipping');
@@ -54,6 +53,11 @@ const OrderScreen = () => {
   }, [userInfo, success, navigate, dispatch]);
 
   const placeOrderHandler = () => {
+    const isPaid='true';
+    if(cart.paymentMethod=='Pay on Delivery')
+    isPaid='false';
+    else if(cart.paymentMethod=='Credit Card')
+    isPaid='true';
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
@@ -63,6 +67,8 @@ const OrderScreen = () => {
         shippingPrice,
         taxPrice,
         totalPrice,
+        isDelivered:true,
+        isPaid:isPaid
   })
     );
   };
@@ -90,7 +96,11 @@ const OrderScreen = () => {
             <div className='underline'></div>
             <div className='orderscreen-controller'>
               <span>{o.paymentMethod[language]}</span>
-              <span className='gd'>{cart.paymentMethod}</span>
+              <span className='gd'>Payment Method:{cart.paymentMethod} </span>
+              <span className='gd'>Cardholder Name:{paymentInfo.cardholderName} </span>
+              <span className='gd'>Card Number:{paymentInfo.cardNumber} </span>
+              <span className='gd'>Expiry Date:{paymentInfo.expiry} </span>
+              <span className='gd'>Paid Amount:{paymentInfo.paidAmount} </span>
             </div>
             <div className='underline'></div>
             <div className='orderscreen-controller'>
