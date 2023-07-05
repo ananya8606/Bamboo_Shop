@@ -42,11 +42,7 @@ const MyOrders = () => {
                   </span>
                   <span>
                     {o.paidstatus[language]} ={' '}
-                    {order.isPaid ? (
                       <i className='fas fa-check'></i>
-                    ) : (
-                      <i className='far fa-times-circle'></i>
-                    )}
                   </span>
                   <span>
                     {o.deliverystatus[language]} ={' '}
