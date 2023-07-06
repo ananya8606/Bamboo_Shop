@@ -80,7 +80,7 @@ const AdminOrders = () => {
                         style={{ textAlign: 'center' }}
                         onClick={() => deliverHandler(order._id)}
                       >
-                        {order.isDelivered ? (
+                        {order.isDelivered == true ? (
                           <i
                             className='fas fa-check'
                             style={{
@@ -97,7 +97,7 @@ const AdminOrders = () => {
                         style={{ textAlign: 'center' }}
                         onClick={() => payHandler(order._id)}
                       >
-                        {order.isPaid ? (
+                        {order.isPaid == true ? (
                           <i
                             className='fas fa-check'
                             style={{
