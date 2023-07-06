@@ -70,7 +70,7 @@ const PaytmPaymentGateway = () => {
       <h2 className="paytmTitle">{paymentgateway.pg[language]}</h2>
       <div className="payment-form">
         <label htmlFor="cardholderName">
-        {paymentgateway.chn[language]}span className="required">*</span>:
+        {paymentgateway.chn[language]}<span className="required">*</span>:
         </label>
         <input
           type="text"
