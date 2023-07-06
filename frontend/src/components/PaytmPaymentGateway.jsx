@@ -12,8 +12,7 @@ const PaytmPaymentGateway = () => {
   const [formValues, setFormValues] = useState({
     cardholderName: '',
     cardNumber: '',
-    expiry: '',
-    cvv: '',
+    expiry:'',
   });
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const addDecimals = (num) => {
@@ -54,7 +53,6 @@ const PaytmPaymentGateway = () => {
         cardholderName: formValues.cardholderName,
         cardNumber: formValues.cardNumber,
         expiry: formValues.expiry,
-        cvv: formValues.cvv,
         paidAmount:totalPrice,
       };  
       dispatch(savePaymentInfo(paymentInfo));
@@ -111,8 +109,6 @@ const PaytmPaymentGateway = () => {
           type="text"
           id="cvv"
           name="cvv"
-          value={formValues.cvv}
-          onChange={handleChange}
           required
         />
 
