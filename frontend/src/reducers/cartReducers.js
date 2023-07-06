@@ -73,6 +73,7 @@ export const savePaymentInfo = createAsyncThunk(
   async (paymentInfo, { getState }) => {
     const state = getState();
     const updatedPaymentInfo = paymentInfo;
+    console.log(paymentInfo);
     localStorage.setItem('paymentMethod', JSON.stringify(paymentInfo));
     return updatedPaymentInfo;
   }
