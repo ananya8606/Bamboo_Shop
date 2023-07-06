@@ -70,55 +70,58 @@ const AdminOrders = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map((order) => (
-                    <tr key={order._id}>
-                      <td>{order._id}</td>
-                      <td>{order.updatedAt}</td>
-                      <td>{order.user}</td>
-                      <td>Rs. {order.totalPrice}</td>
-                      <td
-                        style={{ textAlign: 'center' }}
-                      >
-                        {order.isDelivered == true ? (
-                          <i
-                            className='fas fa-check'
-                            style={{
-                              color: 'green',
-                              cursor: 'pointer',
-                              fontSize: '20px',
-                            }}
-                          ></i>
-                        ) : (
-                          <FontAwesomeIcon icon={faTimes} style={{ color: 'red', cursor: 'pointer' }} />
-                        )}
-                      </td>
-                      <td
-                        style={{ textAlign: 'center' }}
-                      >
-                        {order.isPaid == true ? (
-                          <i
-                            className='fas fa-check'
-                            style={{
-                              color: 'green',
-                              cursor: 'pointer',
-                              fontSize: '20px',
-                            }}
-                          ></i>
-                        ) : (
-                          <FontAwesomeIcon icon={faTimes} style={{ color: 'red', cursor: 'pointer' }} />
-                        )}
-                      </td>
-                      <td
-                        style={{ textAlign: 'center', cursor: 'pointer' }}
-                        onClick={() => detailHandler(order._id)}
-                      >
-                        Details
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
+                {orders.map((order) => (
+                <tr key={order._id}>
+                  <td>{order._id}</td>
+                  <td>{order.updatedAt}</td>
+                  <td>{order.user}</td>
+
+                  <td>Rs. {order.totalPrice}</td>
+                  <td
+                    style={{ textAlign: 'center' }}
+                    onClick={() => deliverHandler(order._id)}
+                  >
+                    {order.isDelivered ? (
+                      <i
+                        className='fas fa-check'
+                        style={{
+                          color: 'green',
+                          cursor: 'pointer',
+                          fontSize: '20px',
+                        }}
+                      ></i>
+                    ) : (
+                      <ClearIcon style={{ color: 'red', cursor: 'pointer' }} />
+                    )}
+                  </td>
+                  <td
+                    style={{ textAlign: 'center' }}
+                    onClick={() => payHandler(order._id)}
+                  >
+                    {' '}
+                    {order.isPaid ? (
+                      <i
+                        className='fas fa-check'
+                        style={{
+                          color: 'green',
+                          cursor: 'pointer',
+                          fontSize: '20px',
+                        }}
+                      ></i>
+                    ) : (
+                      <ClearIcon style={{ color: 'red', cursor: 'pointer' }} />
+                    )}
+                  </td>
+                  <td
+                    style={{ textAlign: 'center', cursor: 'pointer' }}
+                    onClick={() => detailHandler(order._id)}
+                  >
+                    Details{' '}
+                  </td>
+                </tr>
+              ))}
+            </table>
+          ) : (
               <Message message={error} color='red' />
             )
           )}
