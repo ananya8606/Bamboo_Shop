@@ -133,6 +133,8 @@ export const userSlice = createSlice({
       state.userLogin.userInformation = null;
       localStorage.removeItem('userInformation');
       localStorage.removeItem('paymentInfo');
+      localStorage.removeItem('paymentMethod');
+      localStorage.removeItem('shippingAddress');
     },
     userRegisterClear: (state) => {
       state.userRegister.error = null;
