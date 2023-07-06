@@ -63,7 +63,7 @@ const OrderDetails = () => {
                 <div className='orderscreen-controller'>
                   <span>{s.paymentmethod[language]}</span>
                   <span className='gd'>{orderdetails.paymentMethod}</span>
-                  { orderdetails.paymentInfo.cardholderName && (
+                  { orderdetails.paymentInfo && (
                  <>
                    <span className='gd'>{s.chn[language]}:{orderdetails.paymentInfo.cardholderName} </span>
                   <span className='gd'>{s.cn[language]}:{orderdetails.paymentInfo.cardNumber} </span>
