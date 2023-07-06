@@ -39,9 +39,9 @@ const orderSchema = mongoose.Schema(
     },
     paymentInfo:{
       cardholderName: { type: String },
-      cardNumber: { type: Number },
+      cardNumber: { type: String },
       expiry: { type: String },
-      paidAmount: { type: Number },
+      paidAmount: { type: String },
     },
     taxPrice: {
       type: Number,
