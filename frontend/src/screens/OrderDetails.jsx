@@ -66,10 +66,10 @@ const OrderDetails = () => {
                   <span className='gd'>{orderdetails.paymentMethod}</span>
                   {orderdetails.paymentMethod === 'Credit Card' && (
                 <>
-                   <span className='gd'>Cardholder Name:{orderdetails.paymentInfo.cardholderName} </span>
-                  <span className='gd'>Card Number:{orderdetails.paymentInfo.cardNumber} </span>
-                  <span className='gd'>Expiry Date:{orderdetails.paymentInfo.expiry} </span>
-                  <span className='gd'>Paid Amount:{orderdetails.paymentInfo.paidAmount} </span>
+                   <span className='gd'>{paymentgateway.chn[language]}:{orderdetails.paymentInfo.cardholderName} </span>
+                  <span className='gd'>{paymentgateway.cn[language]}:{orderdetails.paymentInfo.cardNumber} </span>
+                  <span className='gd'>{paymentgateway.ed[language]}:{orderdetails.paymentInfo.expiry} </span>
+                  <span className='gd'>{paymentgateway.pa[language]}:{orderdetails.paymentInfo.paidAmount} </span>
                 </>
               )}
                 </div>
