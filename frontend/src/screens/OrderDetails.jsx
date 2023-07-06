@@ -15,8 +15,6 @@ const OrderDetails = () => {
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.user.userLogin)
   const { userInformation: userInfo } = userLogin
-  const cart = useSelector((state) => state.cart);
-  const {paymentInfo} = cart;
   const {id}=useParams();
   const history = useNavigate();
   useEffect(() => {
@@ -65,10 +63,10 @@ const OrderDetails = () => {
                 <div className='orderscreen-controller'>
                   <span>{s.paymentmethod[language]}</span>
                   <span className='gd'>{orderdetails.paymentMethod}</span>
-                  <span className='gd'>Cardholder Name:{paymentInfo.cardholderName} </span>
-                  <span className='gd'>Card Number:{paymentInfo.cardNumber} </span>
-                  <span className='gd'>Expiry Date:{paymentInfo.expiry} </span>
-                  <span className='gd'>Paid Amount:{paymentInfo.paidAmount} </span>
+                  <span className='gd'>Cardholder Name:{orderdetails.paymentInfo.cardholderName} </span>
+                  <span className='gd'>Card Number:{orderdetails.paymentInfo.cardNumber} </span>
+                  <span className='gd'>Expiry Date:{orderdetails.paymentInfo.expiry} </span>
+                  <span className='gd'>Paid Amount:{orderdetails.paymentInfo.paidAmount} </span>
                 </div>
                 <div className='underline'></div>
                 <div className='orderscreen-controller'>
