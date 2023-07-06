@@ -30,6 +30,10 @@ const paymentMethodFromStorage = localStorage.getItem('paymentMethod')
   ? JSON.parse(localStorage.getItem('paymentMethod'))
   : null;
 
+const paymentInfoFromStorage = localStorage.getItem('paymentInfo')
+  ? JSON.parse(localStorage.getItem('paymentInfo'))
+  : null;
+
  const settingsFromStorage = localStorage.getItem('settings')
   ? JSON.parse(localStorage.getItem('settings'))
   : { language: 'en', country: 'in', currency: 'inr' };
@@ -39,12 +43,7 @@ const preloadedState = {
     cartItems: cartItemsFromStorage,
     shippingAddress:shippingAddressFromStorage,
     paymentMethod: paymentMethodFromStorage,
-    paymentInfo:{
-    cardholderName:null,
-    cardNumber:null,
-    expiry:null,
-    paidAmount:null
-    }
+    paymentInfo: paymentInfoFromStorage
   },
   settings: settingsFromStorage,
   user: {
