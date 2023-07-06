@@ -5,7 +5,7 @@ import api from '../api';
 export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async ({ id, qty }, { getState }) => {
-    const { data } = await api.get(`/api/products/${id}`);
+    const { data } = await api.get(`https://bamboo-shop-backend.onrender.com/api/products/${id}`);
     const product = {
       product: data._id,
       name: data.brandName,
