@@ -91,7 +91,7 @@ const OrderScreen = () => {
               <span>{o.paymentMethod[language]}</span>
               {console.log(cart.paymentInfo)}
               <span className='gd'>{o.paymentMethod[language]}:{cart.paymentMethod} </span>
-             {cart.paymentMethod === 'Credit Card' && (
+             {cart.paymentInfo.cardholderName && (
                 <>
                   <span className='gd'>{o.chn[language]}: {cart.paymentInfo.cardholderName}</span>
                   <span className='gd'>{o.cn[language]}: {cart.paymentInfo.cardNumber}</span>
