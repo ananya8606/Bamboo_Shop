@@ -133,7 +133,7 @@ const PaytmPaymentGateway = () => {
           onClick={handleSubmit}
           className='payment-form button'
         >
-          Make Payment
+          {paymentgateway.mp[language]}
         </button>
       </div>
     </div>
