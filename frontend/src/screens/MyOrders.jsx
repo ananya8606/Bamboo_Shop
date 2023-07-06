@@ -41,6 +41,7 @@ const MyOrders = () => {
                     {o.orderdate[language]} = {order.createdAt.substring(0, 10)}
                   </span>
                   <span>
+                    {console.log(order)}
                     {o.paidstatus[language]} ={' '}
                     {order.isPaid == true ? (
                       <i className='fas fa-check'></i>
