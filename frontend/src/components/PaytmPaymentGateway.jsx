@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { savePaymentInfo } from '../reducers/cartReducers';
+import { paymentgateway } from '../Utils/translateLibrary/paymentgateway';
 import Message from './Message';
 
 const PaytmPaymentGateway = () => {
   const history = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const settings = useSelector((state) => state.settings);
+  const { language, currency } = settings;
   const [formValues, setFormValues] = useState({
     cardholderName: '',
     cardNumber: '',
@@ -64,10 +67,10 @@ const PaytmPaymentGateway = () => {
 
   return (
     <div className="paytm-payment-gateway">
-      <h2 className="paytmTitle">Payment Gateway</h2>
+      <h2 className="paytmTitle">{paymentgateway.pg[language]}</h2>
       <div className="payment-form">
         <label htmlFor="cardholderName">
-          Cardholder Name<span className="required">*</span>:
+        {paymentgateway.chn[language]}span className="required">*</span>:
         </label>
         <input
           type="text"
@@ -79,7 +82,7 @@ const PaytmPaymentGateway = () => {
         />
 
         <label htmlFor="cardNumber">
-          Card Number<span className="required">*</span>:
+        {paymentgateway.cn[language]}<span className="required">*</span>:
         </label>
         <input
           type="text"
@@ -91,7 +94,7 @@ const PaytmPaymentGateway = () => {
         />
 
         <label htmlFor="expiry">
-          Expiry Date<span className="required">*</span>:
+        {paymentgateway.ed[language]}<span className="required">*</span>:
         </label>
         <input
           type="text"
@@ -113,7 +116,7 @@ const PaytmPaymentGateway = () => {
         />
 
         <label htmlFor="transactionAmount">
-          Transaction Amount<span className="required">*</span>:
+        {paymentgateway.ta[language]}<span className="required">*</span>:
         </label>
         <input
           type="text"
