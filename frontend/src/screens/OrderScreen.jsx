@@ -13,7 +13,6 @@ const OrderScreen = () => {
   const userLogin = useSelector((state) => state.user.userLogin);
   const { userInformation: userInfo } = userLogin;
   const cart = useSelector((state) => state.cart);
-  const {paymentInfo} = cart;
   const navigate = useNavigate();
 
   // Calculate prices
@@ -98,10 +97,10 @@ const OrderScreen = () => {
             <div className='orderscreen-controller'>
               <span>{o.paymentMethod[language]}</span>
               <span className='gd'>Payment Method:{cart.paymentMethod} </span>
-              <span className='gd'>Cardholder Name:{paymentInfo.cardholderName} </span>
-              <span className='gd'>Card Number:{paymentInfo.cardNumber} </span>
-              <span className='gd'>Expiry Date:{paymentInfo.expiry} </span>
-              <span className='gd'>Paid Amount:{paymentInfo.paidAmount} </span>
+              <span className='gd'>Cardholder Name:{cart.paymentInfo.cardholderName} </span>
+              <span className='gd'>Card Number:{cart.paymentInfo.cardNumber} </span>
+              <span className='gd'>Expiry Date:{cart.paymentInfo.expiry} </span>
+              <span className='gd'>Paid Amount:{cart.paymentInfo.paidAmount} </span>
             </div>
             <div className='underline'></div>
             <div className='orderscreen-controller'>
