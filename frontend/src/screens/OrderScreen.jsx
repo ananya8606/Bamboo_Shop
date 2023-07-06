@@ -52,11 +52,6 @@ const OrderScreen = () => {
   }, [userInfo, success, navigate, dispatch]);
 
   const placeOrderHandler = () => {
-    var isPaid=true;
-    if(cart.paymentMethod=='Pay on Delivery')
-    isPaid=false;
-    else if(cart.paymentMethod=='Credit Card')
-    isPaid=true;
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
@@ -66,8 +61,6 @@ const OrderScreen = () => {
         shippingPrice,
         taxPrice,
         totalPrice,
-        isDelivered:true,
-        isPaid:isPaid,
         paymentInfo:cart.paymentInfo,
   })
     );
