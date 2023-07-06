@@ -43,88 +43,91 @@ const AdminOrders = () => {
 
   return (
     <div className='adminOrdersouter'>
-      {/* <CheckIcon/> */}
       {loading ? (
         <Loading />
       ) : (
         <div className='adminOrder-inner'>
-          {loadingDeliver || (loadingPay && <Loading />)}
-          {errorDeliver ||
-            (errorPay && (
-              <Message message={errorPay || errorDeliver} color='black' />
-            ))}
-          {orders && orders.length > 0 ? (
-            <table>
-              <tr>
-                <th>{ao.o[language]}</th>
-                <th>{ao.d[language]}</th>
-
-                <th>{ao.u[language]}</th>
-                <th>{ao.t[language]}</th>
-                <th>{ao.i[language]}</th>
-                <th>{ao.p[language]}</th>
-                <th style={{ textAlign: 'center' }}>
-                  <i className='fas fa-info'></i>
-                </th>
-              </tr>
-              {orders.map((order) => (
-                <tr key={order._id}>
-                  <td>{order._id}</td>
-                  <td>{order.updatedAt}</td>
-                  <td>{order.user}</td>
-
-                  <td>Rs. {order.totalPrice}</td>
-                  <td
-                    style={{ textAlign: 'center' }}
-                    onClick={() => deliverHandler(order._id)}
-                  >
-                    {order.isDelivered ? (
-                      <i
-                        className='fas fa-check'
-                        style={{
-                          color: 'green',
-                          cursor: 'pointer',
-                          fontSize: '20px',
-                        }}
-                      ></i>
-                    ) : (
-                      <ClearIcon style={{ color: 'red', cursor: 'pointer' }} />
-                    )}
-                  </td>
-                  <td
-                    style={{ textAlign: 'center' }}
-                    onClick={() => payHandler(order._id)}
-                  >
-                    {' '}
-                    {order.isPaid ? (
-                      <i
-                        className='fas fa-check'
-                        style={{
-                          color: 'green',
-                          cursor: 'pointer',
-                          fontSize: '20px',
-                        }}
-                      ></i>
-                    ) : (
-                      <ClearIcon style={{ color: 'red', cursor: 'pointer' }} />
-                    )}
-                  </td>
-                  <td
-                    style={{ textAlign: 'center', cursor: 'pointer' }}
-                    onClick={() => detailHandler(order._id)}
-                  >
-                    Details{' '}
-                  </td>
-                </tr>
-              ))}
-            </table>
+          {(loadingDeliver || loadingPay) && <Loading />}
+          {errorDeliver || errorPay || error ? (
+            <Message
+              message={errorPay || errorDeliver || error}
+              color='black'
+            />
           ) : (
-            <Message message={error} color='red' />
+            orders && orders.length > 0 ? (
+              <table>
+                <thead>
+                  <tr>
+                    <th>{ao.o[language]}</th>
+                    <th>{ao.d[language]}</th>
+                    <th>{ao.u[language]}</th>
+                    <th>{ao.t[language]}</th>
+                    <th>{ao.i[language]}</th>
+                    <th>{ao.p[language]}</th>
+                    <th style={{ textAlign: 'center' }}>
+                      <i className='fas fa-info'></i>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order) => (
+                    <tr key={order._id}>
+                      <td>{order._id}</td>
+                      <td>{order.updatedAt}</td>
+                      <td>{order.user}</td>
+                      <td>Rs. {order.totalPrice}</td>
+                      <td
+                        style={{ textAlign: 'center' }}
+                        onClick={() => deliverHandler(order._id)}
+                      >
+                        {order.isDelivered ? (
+                          <i
+                            className='fas fa-check'
+                            style={{
+                              color: 'green',
+                              cursor: 'pointer',
+                              fontSize: '20px',
+                            }}
+                          ></i>
+                        ) : (
+                          <FontAwesomeIcon icon={faTimes} style={{ color: 'red', cursor: 'pointer' }} />
+                        )}
+                      </td>
+                      <td
+                        style={{ textAlign: 'center' }}
+                        onClick={() => payHandler(order._id)}
+                      >
+                        {order.isPaid ? (
+                          <i
+                            className='fas fa-check'
+                            style={{
+                              color: 'green',
+                              cursor: 'pointer',
+                              fontSize: '20px',
+                            }}
+                          ></i>
+                        ) : (
+                          <FontAwesomeIcon icon={faTimes} style={{ color: 'red', cursor: 'pointer' }} />
+                        )}
+                      </td>
+                      <td
+                        style={{ textAlign: 'center', cursor: 'pointer' }}
+                        onClick={() => detailHandler(order._id)}
+                      >
+                        Details
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <Message message={error} color='red' />
+            )
           )}
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default AdminOrders
+export default AdminOrders;
