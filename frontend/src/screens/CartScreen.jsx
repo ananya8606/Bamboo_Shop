@@ -33,7 +33,7 @@ const CartScreen = () => {
 
   useEffect(() => {
     if (productId!='cartItems') {
-      dispatch(addToCart(productId,qty));
+      dispatch(addToCart({productId,qty}));
     }
   }, [dispatch, productId, qty]);
 
