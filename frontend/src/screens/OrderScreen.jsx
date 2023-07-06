@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../components/Loading';
 import { o } from '../Utils/translateLibrary/order';
 import { useNavigate } from 'react-router-dom';
+import { paymentgateway } from '../Utils/translateLibrary/paymentgateway';
 
 const OrderScreen = () => {
   const settings = useSelector((state) => state.settings);
@@ -93,9 +94,9 @@ const OrderScreen = () => {
               <span className='gd'>Payment Method:{cart.paymentMethod} </span>
              {cart.paymentMethod === 'Credit Card' && (
                 <>
-                  <span className='gd'>Cardholder Name: {cart.paymentInfo.cardholderName}</span>
-                  <span className='gd'>Card Number: {cart.paymentInfo.cardNumber}</span>
-                  <span className='gd'>Expiry Date: {cart.paymentInfo.expiry}</span>
+                  <span className='gd'>{paymentgateway.chn[language]}: {cart.paymentInfo.cardholderName}</span>
+                  <span className='gd'>{paymentgateway.cn[language]}: {cart.paymentInfo.cardNumber}</span>
+                  <span className='gd'>{paymentgateway.ed[language]}: {cart.paymentInfo.expiry}</span>
                   <span className='gd'>Paid Amount: {cart.paymentInfo.paidAmount}</span>
                 </>
               )}
