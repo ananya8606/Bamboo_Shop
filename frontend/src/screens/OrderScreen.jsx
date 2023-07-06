@@ -14,7 +14,7 @@ const OrderScreen = () => {
   const { userInformation: userInfo } = userLogin;
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
-
+  console.log(cart.paymentInfo);
   // Calculate prices
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
