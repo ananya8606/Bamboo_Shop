@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import savePaymentInfo from '../reducers/cartReducers';
+import { savePaymentInfo } from '../reducers/cartReducers';
 import Message from './Message';
 
 const PaytmPaymentGateway = () => {
