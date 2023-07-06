@@ -78,7 +78,6 @@ const AdminOrders = () => {
                       <td>Rs. {order.totalPrice}</td>
                       <td
                         style={{ textAlign: 'center' }}
-                        onClick={() => deliverHandler(order._id)}
                       >
                         {order.isDelivered == true ? (
                           <i
@@ -95,7 +94,6 @@ const AdminOrders = () => {
                       </td>
                       <td
                         style={{ textAlign: 'center' }}
-                        onClick={() => payHandler(order._id)}
                       >
                         {order.isPaid == true ? (
                           <i
