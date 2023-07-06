@@ -4,7 +4,6 @@ import Message from '../components/Message'
 import Loading from '../components/Loading'
 import axios from 'axios'
 import { s } from "../Utils/translateLibrary/orderSummary";
-import { paymentgateway } from '../Utils/translateLibrary/paymentgateway';
 import { useParams,useNavigate } from 'react-router-dom';
 import api from '../api'
 
@@ -66,10 +65,10 @@ const OrderDetails = () => {
                   <span className='gd'>{orderdetails.paymentMethod}</span>
                   {orderdetails.paymentMethod === 'Credit Card' && (
                 <>
-                   <span className='gd'>{paymentgateway.chn[language]}:{orderdetails.paymentInfo.cardholderName} </span>
-                  <span className='gd'>{paymentgateway.cn[language]}:{orderdetails.paymentInfo.cardNumber} </span>
-                  <span className='gd'>{paymentgateway.ed[language]}:{orderdetails.paymentInfo.expiry} </span>
-                  <span className='gd'>{paymentgateway.pa[language]}:{orderdetails.paymentInfo.paidAmount} </span>
+                   <span className='gd'>{s.chn[language]}:{orderdetails.paymentInfo.cardholderName} </span>
+                  <span className='gd'>{s.cn[language]}:{orderdetails.paymentInfo.cardNumber} </span>
+                  <span className='gd'>{s.ed[language]}:{orderdetails.paymentInfo.expiry} </span>
+                  <span className='gd'>{s.pa[language]}:{orderdetails.paymentInfo.paidAmount} </span>
                 </>
               )}
                 </div>
