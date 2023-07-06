@@ -96,6 +96,7 @@ const OrderScreen = () => {
             <div className='underline'></div>
             <div className='orderscreen-controller'>
               <span>{o.paymentMethod[language]}</span>
+              {console.log(cart.paymentInfo)}
               <span className='gd'>Payment Method:{cart.paymentMethod} </span>
               <span className='gd'>Cardholder Name:{cart.paymentInfo.cardholderName} </span>
               <span className='gd'>Card Number:{cart.paymentInfo.cardNumber} </span>
