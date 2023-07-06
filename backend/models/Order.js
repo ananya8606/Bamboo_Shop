@@ -41,7 +41,7 @@ const orderSchema = mongoose.Schema(
       cardholderName: { type: String },
       cardNumber: { type: String },
       expiry: { type: String },
-      paidAmount: { type: String },
+      paidAmount: { type: Number },
     },
     taxPrice: {
       type: Number,
