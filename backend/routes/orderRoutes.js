@@ -102,7 +102,8 @@ router.put(
   asyncHandler(async (req, res) => {
     const order = await Order.findOne({ _id: req.params.id })
     if (order) {
-      order.isDelivered=true;
+      order.isDelivered = !order.isDelivered
+      console.log(order.orderItems)
       const func = order.orderItems.map(async (item) => {
         const productinitial = await Product.findOne({ _id: item.product })
         const quantityProd = productinitial.quantity
@@ -130,7 +131,7 @@ router.put(
   asyncHandler(async (req, res) => {
     const order = await Order.findOne({ _id: req.params.id })
     if (order) {
-      order.isPaid=true;
+      order.isPaid = !order.isPaid
       await order.save()
       res.status(201).json('Success')
     } else {
