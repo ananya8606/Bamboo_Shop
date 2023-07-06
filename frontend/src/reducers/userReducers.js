@@ -132,7 +132,6 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.userLogin.userInformation = null;
       localStorage.removeItem('userInformation');
-      localStorage.removeItem('paymentInfo');
       localStorage.removeItem('paymentMethod');
       localStorage.removeItem('shippingAddress');
     },
