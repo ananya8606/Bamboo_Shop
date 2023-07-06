@@ -25,6 +25,7 @@ const ProductCreate = () => {
 
   const imgHandler = async (e) => {
     const file = e.target.files[0];
+    console.log(file);
     const formData =new FormData();
     console.log(formData)
     formData.append('image', file);
