@@ -97,7 +97,7 @@ const OrderScreen = () => {
                   <span className='gd'>{paymentgateway.chn[language]}: {cart.paymentInfo.cardholderName}</span>
                   <span className='gd'>{paymentgateway.cn[language]}: {cart.paymentInfo.cardNumber}</span>
                   <span className='gd'>{paymentgateway.ed[language]}: {cart.paymentInfo.expiry}</span>
-                  <span className='gd'>Paid Amount: {cart.paymentInfo.paidAmount}</span>
+                  <span className='gd'>{paymentgateway.pa[language]}: {cart.paymentInfo.paidAmount}</span>
                 </>
               )}
             </div>
