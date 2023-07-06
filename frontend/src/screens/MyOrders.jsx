@@ -42,7 +42,7 @@ const MyOrders = () => {
                   </span>
                   <span>
                     {o.paidstatus[language]} ={' '}
-                    {order.isPaid ? (
+                    {order.isPaid == true ? (
                       <i className='fas fa-check'></i>
                     ) : (
                       <i className='far fa-times-circle'></i>
@@ -50,7 +50,7 @@ const MyOrders = () => {
                   </span>
                   <span>
                     {o.deliverystatus[language]} ={' '}
-                    {order.isDelivered ? (
+                    {order.isDelivered == true ? (
                       <i className='fas fa-check'></i>
                       ) : (
                         <i className='far fa-times-circle'></i>
