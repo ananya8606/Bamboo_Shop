@@ -4,6 +4,7 @@ import Message from '../components/Message'
 import Loading from '../components/Loading'
 import axios from 'axios'
 import { s } from "../Utils/translateLibrary/orderSummary";
+import { paymentgateway } from '../Utils/translateLibrary/paymentgateway';
 import { useParams,useNavigate } from 'react-router-dom';
 import api from '../api'
 
