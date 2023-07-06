@@ -132,6 +132,7 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.userLogin.userInformation = null;
       localStorage.removeItem('userInformation');
+      localStorage.removeItem('paymentInfo');
     },
     userRegisterClear: (state) => {
       state.userRegister.error = null;
