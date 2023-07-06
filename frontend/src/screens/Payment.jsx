@@ -79,7 +79,7 @@ const Payment = () => {
               checked={check1}
               onChange={(e) => onChangeHandler(e, 2)}
             />
-            <span>Credit Card Payment</span>
+            <span>{pay.cc[language]}</span>
           </div>
           {console.log(paymentMethod)}
         </div>
