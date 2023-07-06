@@ -68,6 +68,15 @@ export const savePaymentMethod = createAsyncThunk(
   }
 );
 
+export const savePaymentInfo = createAsyncThunk(
+  'cart/savePaymentInfo',
+  async (paymentInfo, { getState }) => {
+    const state = getState();
+    const updatedPaymentInfo = paymentInfo;
+    localStorage.setItem('paymentMethod', JSON.stringify(paymentInfo));
+    return updatedPaymentInfo;
+  }
+);
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -86,16 +95,6 @@ const cartSlice = createSlice({
     cartClearItems: (state) => {
       state.cartItems = [];
     },
-    savePaymentInfo: (state, action) => {
-      const { cardholderName, cardNumber, expiry, cvv, paidAmount } = action.payload;
-      state.paymentInfo = {
-        cardholderName,
-        cardNumber,
-        expiry,
-        cvv,
-        paidAmount,
-      };
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -110,6 +109,9 @@ const cartSlice = createSlice({
       })
       .addCase(savePaymentMethod.fulfilled, (state, action) => {
         state.paymentMethod = action.payload;
+      })
+     .addCase(savePaymentInfo.fulfilled, (state, action) => {
+        state.paymentInfo = action.payload;
       });
   },
 });
