@@ -29,4 +29,10 @@ export const paymentgateway = {
     hi: "लेनदेन राशि",
     ne: "लेनदेन रकम"
   },
+mp: {
+  en:"Make Payment",
+  bn:"পেমেন্ট করুন",
+  hi:"भुगतान करें",
+  ne:"भुक्तान गर्नुहोस्"
+}
 };
