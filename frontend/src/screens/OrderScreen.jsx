@@ -91,12 +91,14 @@ const OrderScreen = () => {
               <span>{o.paymentMethod[language]}</span>
               {console.log(cart.paymentInfo)}
               <span className='gd'>Payment Method:{cart.paymentMethod} </span>
-              {if(cart.paymentMethod == 'Credit Card') ? (<>
-              <span className='gd'>Cardholder Name:{cart.paymentInfo.cardholderName} </span>
-              <span className='gd'>Card Number:{cart.paymentInfo.cardNumber} </span>
-              <span className='gd'>Expiry Date:{cart.paymentInfo.expiry} </span>
-              <span className='gd'>Paid Amount:{cart.paymentInfo.paidAmount} </span> 
-              </>): (<></>)}
+             {cart.paymentMethod === 'Credit Card' && (
+                <>
+                  <span className='gd'>Cardholder Name: {cart.paymentInfo.cardholderName}</span>
+                  <span className='gd'>Card Number: {cart.paymentInfo.cardNumber}</span>
+                  <span className='gd'>Expiry Date: {cart.paymentInfo.expiry}</span>
+                  <span className='gd'>Paid Amount: {cart.paymentInfo.paidAmount}</span>
+                </>
+              )}
             </div>
             <div className='underline'></div>
             <div className='orderscreen-controller'>
