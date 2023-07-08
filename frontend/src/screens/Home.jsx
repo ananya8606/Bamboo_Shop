@@ -17,8 +17,8 @@ const Home = () => {
   const { loading, products, error } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
-    dispatch(fetchSettings());
+  dispatch(fetchSettings());
+  dispatch(listProducts());
   }, [dispatch]);
   
   return (
