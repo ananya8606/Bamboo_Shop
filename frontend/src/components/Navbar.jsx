@@ -77,7 +77,7 @@ const settings = useSelector((state) => state.settings);
           <Link to={`/cart/cartItems/?qty`}>
             <i className='fas fa-shopping-cart'>
               {' '}
-              {cartItems.length > 0 && <span>{cartItems.length}</span>}
+              {cartItems && <span>{cartItems.length}</span>}
             </i>
           </Link>
         </div>
