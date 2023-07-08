@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../components/Loading';
 import { o } from '../Utils/translateLibrary/order';
 import { useNavigate } from 'react-router-dom';
+import { fetchCartItems } from '../reducers/cartReducers';
 
 const OrderScreen = () => {
   const settings = useSelector((state) => state.settings);
@@ -14,7 +15,7 @@ const OrderScreen = () => {
   const { userInformation: userInfo } = userLogin;
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
-  console.log(cart.paymentInfo);
+  console.log(cart);
   // Calculate prices
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
@@ -33,13 +34,19 @@ const OrderScreen = () => {
 
   const orderCreate = useSelector((state) => state.order.orderCreate);
   const { order, success, error, loading } = orderCreate;
+
+  
   useEffect(() => {
-    if (!cart.shippingAddress.address) {
+    dispatch(fetchCartItems());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!cart.shippingAddress?.address) {
       navigate('/shipping');
     } else if (!cart.paymentMethod) {
       navigate('/payment');
     }
-  }, [cart.shippingAddress.address, cart.paymentMethod, navigate]);
+  }, [cart.shippingAddress, cart.paymentMethod, navigate]);
 
   useEffect(() => {
     if (!userInfo) {
@@ -61,8 +68,8 @@ const OrderScreen = () => {
         shippingPrice,
         taxPrice,
         totalPrice,
-        paymentInfo:cart.paymentInfo,
-  })
+        paymentInfo: cart.paymentInfo,
+      })
     );
   };
 
@@ -77,28 +84,24 @@ const OrderScreen = () => {
             <div className='orderscreen-controller'>
               <span>{o.title[language]}</span>
               <span>
-                {cart.shippingAddress.address},{cart.shippingAddress.city},
-                {cart.shippingAddress.postalCode} near{' '}
-                {cart.shippingAddress.country}
-              </span>
-              <span>
-                <i style={{ color: 'green' }} className='fas fa-phone'></i>{' '}
-                {cart.shippingAddress.phoneNumber}
-              </span>
-            </div>
-            <div className='underline'></div>
-            <div className='orderscreen-controller'>
-              <span>{o.paymentMethod[language]}</span>
-              {console.log(cart.paymentInfo)}
-              <span className='gd'>{o.paymentMethod[language]}:{cart.paymentMethod} </span>
-             {cart.paymentInfo && (
-                <>
-                  <span className='gd'>{o.chn[language]}: {cart.paymentInfo.cardholderName}</span>
-                  <span className='gd'>{o.cn[language]}: {cart.paymentInfo.cardNumber}</span>
-                  <span className='gd'>{o.ed[language]}: {cart.paymentInfo.expiry}</span>
-                  <span className='gd'>{o.pa[language]}: {cart.paymentInfo.paidAmount}</span>
-                </>
-              )}
+              {cart.shippingAddress?.address}, {cart.shippingAddress?.city}, {cart.shippingAddress?.postalCode} near {cart.shippingAddress?.country}
+        </span>
+        <span>
+          <i style={{ color: 'green' }} className='fas fa-phone'></i> {cart.shippingAddress?.phoneNumber}
+        </span>
+      </div>
+      <div className='underline'></div>
+      <div className='orderscreen-controller'>
+        <span>{o.paymentMethod[language]}</span>
+        <span className='gd'>{`${o.paymentMethod[language]}: ${cart.paymentMethod}`}</span>
+        {cart.paymentInfo && cart.paymentInfo.cardholderName && (
+          <>
+            <span className='gd'>{`${o.chn[language]}: ${cart.paymentInfo.cardholderName}`}</span>
+            <span className='gd'>{`${o.cn[language]}: ${cart.paymentInfo.cardNumber}`}</span>
+            <span className='gd'>{`${o.ed[language]}: ${cart.paymentInfo.expiry}`}</span>
+            <span className='gd'>{`${o.pa[language]}: ${cart.paymentInfo.paidAmount}`}</span>
+          </>
+        )}
             </div>
             <div className='underline'></div>
             <div className='orderscreen-controller'>
