@@ -27,8 +27,14 @@ const userSchema = mongoose.Schema(
         },
     country: {
       type: String,
-      trim: true,
+      required: true,
+      default:"in"
       },
+    currency:{
+      type:String,
+      required:true,
+      default: "inr"
+    }
   },
   {
     timestamps: true,
