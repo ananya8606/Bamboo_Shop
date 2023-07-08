@@ -5,6 +5,7 @@ const productRoutes = require('./routes/productRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
 const path = require('path');
 const orderRoutes = require('./routes/orderRoutes.js');
+const cartRoutes = require('./routes/cartRoutes.js');
 const cors = require("cors");
 dotenv.config()
 connectDB()
@@ -31,6 +32,7 @@ productRoutes middleware for any requests that match the /api/products path.*/
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/cart', cartRoutes)
 /*app.use(express.static(path.join(__dirname, '/frontend/build'))): This line sets up a static file 
 server to serve the static files located in the /frontend/build directory. 
 It uses the express.static middleware to serve the files.
