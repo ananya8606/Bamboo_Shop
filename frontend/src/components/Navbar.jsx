@@ -10,13 +10,6 @@ const Navbar = () => {
 const dispatch = useDispatch();
 const settings = useSelector((state) => state.settings);
   const { language } = settings;
-  const showList = () => {
-    document.getElementById('extraitems').classList.toggle('show-list')
-  }
-  const Logout = () => {
-    dispatch(logout())
-    showAuthOptions()
-  }
   const [text, setText] = useState('')
   const productSearch = useSelector((state) => state.product.productSearch);
   const { loading, products, error } = productSearch;
@@ -24,6 +17,14 @@ const settings = useSelector((state) => state.settings);
   const { userInformation: userInfo } = userLogin
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
+   const showList = () => {
+    document.getElementById('extraitems').classList.toggle('show-list')
+  }
+  const Logout = () => {
+    dispatch(logout())
+    cartItems.length=0;
+    showAuthOptions()
+  }
    useEffect(() => {
     dispatch(fetchCartItems());
   }, [dispatch]);
