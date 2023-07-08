@@ -5,7 +5,6 @@ import Loading from './Loading'
 import { logout } from '../reducers/userReducers'
 import { useDispatch, useSelector } from 'react-redux'
 import { nav } from "../Utils/translateLibrary/navbar";
-import { fetchCartItems } from '../reducers/cartReducers';
 const Navbar = () => {
 const dispatch = useDispatch();
 const settings = useSelector((state) => state.settings);
@@ -22,13 +21,9 @@ const settings = useSelector((state) => state.settings);
   }
   const Logout = () => {
     dispatch(logout())
-    cartItems.length=0;
     showAuthOptions()
   }
-   useEffect(() => {
-    dispatch(fetchCartItems());
-  }, [dispatch]);
-  
+
   useEffect(() => {
     if(text)
     dispatch(productsSearch(text));
