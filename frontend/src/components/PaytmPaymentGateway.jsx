@@ -12,12 +12,11 @@ const PaytmPaymentGateway = () => {
   const cart = useSelector((state) => state.cart);
   const settings = useSelector((state) => state.settings);
   const { language, currency } = settings;
-  const [formValues, setFormValues] = useState({
-    cardholderName: '',
-    cardNumber: '',
-    expiry:'',
-  });
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
+ 
+   const [cardholderName, setCardholderName] = useState('');
+   const [cardNumber, setCardNumber] = useState('');
+   const [expiry, setExpiry] = useState('');
+   const [cvv, setCvv] = useState('');
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
   };
@@ -37,106 +36,90 @@ const PaytmPaymentGateway = () => {
     const simulateRedirection = () => {
       console.log('Redirecting to Paytm payment gateway...');
     };
-
+  
     simulateRedirection();
   }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
-  };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (Object.entries(formValues).every((value) => value !== '')) {
       const paymentInfo = {
-        cardholderName: formValues.cardholderName,
-        cardNumber: formValues.cardNumber,
-        expiry: formValues.expiry,
+        cardholderName: cardholderName,
+        cardNumber: cardNumber,
+        expiry:expiry,
         paidAmount:totalPrice,
       };  
       dispatch(savePaymentInfo(paymentInfo));
       history('/placeorder');
-    } else {
-      setShowErrorMessage(true);
-    }
   };
 
   return (
     <div className="paytm-payment-gateway">
       <h2 className="paytmTitle">{paymentgateway.pg[language]}</h2>
       <div className="payment-form">
+      <form onSubmit={handleSubmit}>
+      <div className='form-control'>
         <label htmlFor="cardholderName">
         {paymentgateway.chn[language]}<span className="required">*</span>:
         </label>
         <input
           type="text"
-          id="cardholderName"
-          name="cardholderName"
-          value={formValues.cardholderName}
-          onChange={handleChange}
+          value={cardholderName}
+          onChange={(e) => setCardholderName(e.target.value)}
           required
         />
-
+        </div>
+       <div className='form-control'>
         <label htmlFor="cardNumber">
         {paymentgateway.cn[language]}<span className="required">*</span>:
         </label>
         <input
           type="text"
-          id="cardNumber"
-          name="cardNumber"
-          value={formValues.cardNumber}
-          onChange={handleChange}
+          value={cardNumber}
+          onChange={(e) => setCardNumber(e.target.value)}
           required
         />
-
+       </div>
+       <div className='form-control'>
         <label htmlFor="expiry">
         {paymentgateway.ed[language]}<span className="required">*</span>:
         </label>
         <input
           type="text"
-          id="expiry"
-          name="expiry"
-          value={formValues.expiry}
-          onChange={handleChange}
+          value={expiry}
+          onChange={(e) => setExpiry(e.target.value)}
           required
         />
-
+       </div>
+       <div className='form-control'>
         <label htmlFor="cvv">
           CVV<span className="required">*</span>:
         </label>
         <input
           type="text"
-          id="cvv"
-          name="cvv"
+          value={cvv}
+          onChange={(e) => setCvv(e.target.value)}
           required
         />
-
+       </div>
+       <div className='form-control'>
         <label htmlFor="transactionAmount">
         {paymentgateway.ta[language]}<span className="required">*</span>:
         </label>
         <input
           type="text"
-          id="transactionAmount"
           value={totalPrice}
           readOnly
         />
-
-        {showErrorMessage && (
-          <Message message={'Please fill all the details'} color='red'/>
-        )}
-
+       </div>
         <button
-          onClick={handleSubmit}
+          type="submit"
           className='payment-form button'
         >
           {paymentgateway.mp[language]}
         </button>
+        </form>
       </div>
-    </div>
+      </div>
   );
 };
 
