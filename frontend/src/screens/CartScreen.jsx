@@ -1,10 +1,10 @@
-// CartScreen.js
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../reducers/cartReducers';
 import { c } from "../Utils/translateLibrary/cart";
 import { useParams, useNavigate } from 'react-router-dom';
+import { fetchCartItems } from '../reducers/cartReducers';
 
 const CartScreen = () => {
   const { id: productId } = useParams();
@@ -25,17 +25,17 @@ const CartScreen = () => {
 
   const history = useNavigate();
   const checkoutHandler = () => {
-    if(userInfo)
     history('/shipping');
-    else
-    history('/login');
   };
 
   useEffect(() => {
-    if (productId!='cartItems') {
-      dispatch(addToCart({id:productId,qty:qty}));
-    }
+    if (!userInfo)
+      history('/login');
   }, [dispatch, productId, qty]);
+
+  useEffect(() => {
+    dispatch(fetchCartItems());
+  }, [dispatch]);
 
   return (
     <div className='cartScreen-outer'>
@@ -52,12 +52,12 @@ const CartScreen = () => {
           </span>
           <br />
           <br />
-          {cartItems.length < 1 ? (
+          {!cartItems || cartItems.length === 0 ? (
             <span>{c.emptyCart[language]}</span>
           ) : (
             cartItems.map((item) => (
-              <>
-                <div className='cart-controller' key={item.product}>
+              <React.Fragment key={item.product}>
+                <div className='cart-controller'>
                   <Link
                     to={`/category/${item.category}/${item.subCategory}/${item.product}`}
                   >
@@ -67,14 +67,14 @@ const CartScreen = () => {
                   <span>Rs. {item.price}</span>
                   <div className="quantity-controller">
                     <button
-                      onClick={() => dispatch(addToCart({ id: item.product, qty:(item.qty>0?item.qty - 1:0) }))}
+                      onClick={() => dispatch(addToCart({ id: item.product, qty: (item.qty > 0 ? -1 : 0) }))}
                       className="quantity-btn"
                     >
                       -
                     </button>
                     <span>{item.qty}</span>
                     <button
-                      onClick={() => dispatch(addToCart({ id: item.product, qty: item.qty + 1 }))}
+                      onClick={() => dispatch(addToCart({ id: item.product, qty: 1 }))}
                       className="quantity-btn"
                     >
                       +
@@ -89,28 +89,26 @@ const CartScreen = () => {
                   style={{ marginLeft: '10px', width: '70%' }}
                   className='underline'
                 ></div>
-              </>
+              </React.Fragment>
             ))
           )}
         </div>
         <div className='cartScreen-right'>
           <span>
-            {c.subTotal[language]} ({cartItems.reduce(
+            {c.subTotal[language]} ({cartItems ? cartItems.reduce(
               (acc, item) => acc + item.qty,
               0
-            )}{' '}
-            {c.items[language]})
+            ) : 0} {c.items[language]})
           </span>
           <span>
             Rs.{' '}
-            {cartItems
-              .reduce((acc, item) => acc + item.qty * item.price, 0)
-              .toFixed(2)}{' '}
+            {cartItems ? cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)
+              .toFixed(2) : 0}
           </span>
           <button
             className='checkout-btn'
             onClick={checkoutHandler}
-            disabled={cartItems.length === 0}
+            disabled={!cartItems || cartItems.length === 0}
           >
             {c.proceed[language]}
           </button>
@@ -121,4 +119,3 @@ const CartScreen = () => {
 };
 
 export default CartScreen;
-
