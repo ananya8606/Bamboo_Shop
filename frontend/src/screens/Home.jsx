@@ -5,6 +5,8 @@ import { listProducts } from '../reducers/productReducers';
 import Loading from '../components/Loading';
 import { footer } from '../Utils/translateLibrary/footer';
 import PaginationComponent from '../components/PaginationComponent';
+import { fetchSettings } from "../reducers/settingsReducers";
+
 const Home = () => {
   const dispatch = useDispatch();
 
@@ -16,8 +18,9 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(listProducts());
+    dispatch(fetchSettings());
   }, [dispatch]);
-
+  
   return (
     <div className=''>
       <ImageCarousel />
