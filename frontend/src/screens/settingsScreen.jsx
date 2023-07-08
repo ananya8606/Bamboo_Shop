@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { setLang } from "../Utils/setlang";
 import { countrySettings, currencySettings } from "../Utils/settings";
-import { updateSettings } from "../reducers/settingsReducers";
+import { updateSettings , fetchSettings } from "../reducers/settingsReducers";
 import { setting } from "../Utils/translateLibrary/settings";
 
 const SettingsScreen = () => {
@@ -19,6 +19,9 @@ const SettingsScreen = () => {
     setUpdated(true); 
     dispatch(updateSettings({ language, country, currency }))
   };
+  useEffect(() => {
+    dispatch(fetchSettings());
+  }, [dispatch]);
 
   return (
     <>
