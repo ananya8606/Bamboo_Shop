@@ -36,7 +36,7 @@ export const deleteUser = createAsyncThunk('user/deleteUser', async (id, { getSt
     },
   };
 
-  await api.delete(`/api/users/${id}`, config);
+  await api.delete(`https://bamboo-shop-backend.onrender.com/api/users/${id}`, config);
   return id;
 });
 
