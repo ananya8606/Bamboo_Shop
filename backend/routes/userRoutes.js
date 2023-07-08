@@ -177,4 +177,55 @@ router.delete(
     }
   })
 )
+
+router.put(
+  '/user/updateLanguage',
+  protect,
+  asyncHandler(async (req, res) => {
+    const  {language, country, currency} = req.body;
+    const user = await User.findById(req.user._id)
+    console.log(user)
+    if (user) {
+      user.language = language;
+      user.country = country;
+      user.currency =currency;
+      await user.save()
+      res.status(201).json(
+        {
+        language:user.language,
+        country:user.country,
+        currency:user.currency
+        }
+      )
+    } else {
+      res.status(401)
+      console.log(error)
+      res.json('error')
+    }
+  })
+)
+
+router.get(
+  '/fetchLanguage',
+  protect,
+  asyncHandler(async (req, res) => {
+    console.log(req.user._id)
+    const user = await User.findById(req.user._id)
+    if(user){
+      res.status(200).json(
+        {
+        language:user.language,
+        country:user.country,
+        currency:user.currency
+        }
+      )
+    }
+     else {
+      res.status(400)
+      console.log(error)
+      res.json('error')
+    }
+  })
+)
+
 module.exports = router
