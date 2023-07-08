@@ -5,6 +5,7 @@ import Loading from '../components/Loading';
 import Message from '../components/Message';
 import Rating from '../components/Rating';
 import { p } from "../Utils/translateLibrary/productDetails";
+import { addToCart } from '../reducers/cartReducers';
 import {
   listProductDetails,
   createProductReview,
@@ -59,6 +60,7 @@ const ProductScreen = () => {
     }
   }, [productId, successProductReview, dispatch])
   const addToCartHandler = () => {
+    dispatch(addToCart({id:productId,qty:qty}));
     history(`/cart/${productId}?qty=${qty}`)
   }
   return (
