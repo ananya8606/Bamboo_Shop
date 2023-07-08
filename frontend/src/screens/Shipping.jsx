@@ -4,7 +4,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../reducers/cartReducers';
 import { sh } from "../Utils/translateLibrary/shipping";
-
+import { fetchCartItems } from '../reducers/cartReducers';
 const Shipping = () => {
   const settings = useSelector((state) => state.settings);
   const { language } = settings;
@@ -44,6 +44,10 @@ const Shipping = () => {
   useEffect(() => {
     !userInfo && history('/');
   }, [userInfo]);
+
+  useEffect(() => {
+    dispatch(fetchCartItems());
+  }, [dispatch]);
 
   return (
     <div className='shipping-outer'>
