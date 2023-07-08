@@ -1,23 +1,69 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import api from '../api';
+export const updateSettings = createAsyncThunk('settings/updateSettings', async ({language, country, currency}, { getState }) => {
+  const { token } = getState().user.userLogin.userInformation;
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await api.put('/api/users/user/updateLanguage', {language, country, currency}, config);
+  return response.data;
+});
+
+export const fetchSettings = createAsyncThunk('settings/fetchSettings', async (_,{ getState, rejectWithValue }) => {
+ try{
+  const { token } = getState().user.userLogin.userInformation;
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await api.get('/api/users/fetchLanguage', config);
+  console.log(response)
+  return response.data;
+ } catch (error) {
+    return rejectWithValue(error.response.data.message);
+  }
+});
 
 const settingsSlice = createSlice({
   name: 'settings',
   initialState: { success: false },
   reducers: {
-    updateSettings: (state, action) => {
-      // You can access the payload directly
-      const { language, country, currency } = action.payload;
-      state.language = language;
-      state.country = country;
-      state.currency = currency;
-      state.success = true;
-    },
     updateSettingsReset: (state) => {
       state.success = false;
     },
   },
+  extraReducers: (builder) => {
+    builder
+    .addCase( updateSettings.pending, (state) => {
+      state.success = false;
+    })
+    .addCase( updateSettings.fulfilled, (state, action) => {
+      state.language = action.payload.language;
+      state.country = action.payload.country;
+      state.currency = action.payload.currency;
+      state.success = true;
+    })
+    .addCase( updateSettings.rejected, (state) => {
+      state.success = false;
+    })
+    .addCase( fetchSettings.fulfilled, (state, action) => {
+      state.language = action.payload.language;
+      state.country = action.payload.country;
+      state.currency = action.payload.currency;
+      state.success = true;
+    })
+  },
 });
 
-export const { updateSettings,  updateSettingsReset } = settingsSlice.actions;
+export const { updateSettingsReset } = settingsSlice.actions;
 const settingsReducer = settingsSlice.reducer;
 export default settingsReducer;
