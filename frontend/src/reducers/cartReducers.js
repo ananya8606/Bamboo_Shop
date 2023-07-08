@@ -1,80 +1,171 @@
-// cartReducers.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../api';
 
 export const addToCart = createAsyncThunk(
   'cart/addToCart',
-  async ({ id, qty }, { getState }) => {
-    const { data } = await api.get(`https://bamboo-shop-backend.onrender.com/api/products/${id}`);
-    const product = {
-      product: data._id,
-      name: data.brandName,
-      image: data.image,
-      price: data.discountedCost,
-      countInStock: data.quantity,
-      qty,
-      category: data.category,
-      subCategory: data.subCategory,
-    };
-    const state = getState();
-
-    const existItem = state.cart.cartItems.find((x) => x.product === product.product);
-
-    let updatedCartItems;
-    if (existItem) {
-      updatedCartItems = state.cart.cartItems.map((x) =>
-        x.product === product.product ? product : x
-      );
-    } else {
-      updatedCartItems = [...state.cart.cartItems, product];
-    }
-
-    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
-
-    return updatedCartItems;
+  async ({id,qty},{ getState }) => {
+    try {
+      const {
+        user:{userLogin: { userInformation },
+      }} = getState();
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInformation.token}`,
+        },
+      };
+    const response = await api.post(`/api/cart/cartItems`, 
+      {id,qty}
+    ,config);
+    console.log(response)
+    localStorage.setItem('cartItems', JSON.stringify(response.data));
+    return response.data;
   }
+  catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+
+    throw new Error(message);
+  }
+}
 );
+
 
 export const removeFromCart = createAsyncThunk(
   'cart/removeFromCart',
   async (id, { getState }) => {
-    const state = getState();
-    const updatedCartItems = state.cart.cartItems.filter(
-      (item) => item.product !== id
-    );
-    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
-    return updatedCartItems;
+    try {
+      const {
+        user:{userLogin: { userInformation },
+      }} = getState();
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInformation.token}`,
+        },
+      };
+    const response = await api.post(`/api/cart/removeItem`, 
+      {id}
+    ,config);
+    localStorage.setItem('cartItems', JSON.stringify(response.data));
+    console.log(response)
+    return response.data;
   }
+  catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+
+    throw new Error(message);
+  }
+}
 );
 
 export const saveShippingAddress = createAsyncThunk(
   'cart/saveShippingAddress',
-  async (data, { getState }) => {
-    const state = getState();
-    const updatedShippingAddress = data;
-    localStorage.setItem('shippingAddress', JSON.stringify(data))
-    return updatedShippingAddress;
-  }
+  async (data, { getState }) =>  {   
+    try {
+    const {
+      user:{userLogin: { userInformation },
+    }} = getState();
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInformation.token}`,
+      },
+    };
+  const response = await api.put(`/api/cart/saveShippingAddress`, 
+    {data}
+  ,config);
+  localStorage.setItem('shippingAddress', JSON.stringify(response.data));
+  console.log(response)
+  return response.data;
+}
+catch (error) {
+  const message =
+    error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+
+  throw new Error(message);
+}
+}
 );
 
 
 export const savePaymentMethod = createAsyncThunk(
   'cart/savePaymentMethod',
-  async (paymentMethod, { getState }) => {
-    const state = getState();
-    const updatedPaymentMethod = paymentMethod;
-    localStorage.setItem('paymentMethod', JSON.stringify(updatedPaymentMethod));
-    return updatedPaymentMethod;
-  }
+  async (data, { getState }) =>  {   
+    const {
+      user:{userLogin: { userInformation },
+    }} = getState();
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInformation.token}`,
+      },
+    };
+  const response = await api.put(`/api/cart/savePaymentMethod`, 
+    {data}
+  ,config);
+  localStorage.setItem('paymentMethod', JSON.stringify(response.data));
+  console.log(response)
+  return response.data;
+}
 );
 
+
 export const savePaymentInfo = createAsyncThunk(
-  'cart/savePaymentInfo',
-  async (paymentInfo, { getState }) => {
-    const state = getState();
-    const updatedPaymentInfo = paymentInfo;
-    console.log(paymentInfo);
-    return updatedPaymentInfo;
+  'cart/savePaymentInfo',  async (paymentInfo, { getState }) => { 
+    try {
+    const {
+      user:{userLogin: { userInformation },
+    }} = getState();
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInformation.token}`,
+      },
+    };
+  const response = await api.put(`/api/cart/savePaymentInfo`, 
+    {paymentInfo}
+  ,config);
+  console.log(response)
+  return response.data;
+}
+catch (error) {
+  const message =
+    error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+
+  throw new Error(message);
+}
+}
+);
+
+export const fetchCartItems = createAsyncThunk(
+  'cart/fetchCartItems',
+  async (_, { getState, rejectWithValue }) => {
+    try {
+      const {
+        user:{userLogin: { userInformation },
+      }} = getState();
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInformation.token}`,
+        },
+      };
+      const response = await api.get('/api/cart/fetchCartItems',config);
+      console.log('cart'+response.data)
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
   }
 );
 
@@ -112,7 +203,13 @@ const cartSlice = createSlice({
       })
      .addCase(savePaymentInfo.fulfilled, (state, action) => {
         state.paymentInfo = action.payload;
-      });
+      })
+      .addCase(fetchCartItems.fulfilled, (state, action) => {
+        state.cartItems = action.payload.cartItems;
+        state.shippingAddress=action.payload.shippingAddress;
+        state.paymentMethod=action.payload.paymentMethod;
+        state.paymentInfo=action.payload.paymentInfo;
+      })
   },
 });
 
