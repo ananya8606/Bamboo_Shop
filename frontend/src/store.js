@@ -14,9 +14,13 @@ const rootReducer = combineReducers({
   user:userReducer,
 });
 
-const cartItemsFromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
-  : [];
+const cartItemsFromStorage= localStorage.getItem('cartItems')
+? JSON.parse(localStorage.getItem('cartItems'))
+: null;
+
+const paymentMethodFromStorage= localStorage.getItem('paymentMethod')
+? JSON.parse(localStorage.getItem('paymentMethod'))
+: null;
 
 const userInfoFromStorage = localStorage.getItem('userInformation')
   ? JSON.parse(localStorage.getItem('userInformation'))
@@ -26,20 +30,16 @@ const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   ? JSON.parse(localStorage.getItem('shippingAddress'))
   : null;
 
-const paymentMethodFromStorage = localStorage.getItem('paymentMethod')
-  ? JSON.parse(localStorage.getItem('paymentMethod'))
-  : null;
-
  const settingsFromStorage = localStorage.getItem('settings')
   ? JSON.parse(localStorage.getItem('settings'))
   : { language: 'en', country: 'in', currency: 'inr' };
 
 const preloadedState = {
   cart: {
-    cartItems: cartItemsFromStorage,
+    cartItems:cartItemsFromStorage,
     shippingAddress:shippingAddressFromStorage,
-    paymentMethod: paymentMethodFromStorage,
-    paymentInfo: null
+    paymentMethod:paymentMethodFromStorage,
+    paymentInfo:null
   },
   settings: settingsFromStorage,
   user: {
@@ -61,12 +61,6 @@ const preloadedState = {
     loading:false, 
     error:null, 
     success:false
-    },
-    userUpdateLanguage:{ 
-      loadingLanguage: false,
-      successLanguage: false,
-      errorLanguage: null,
-      userInfoLanguage: null
     },
     userList:{
     loading: false,
