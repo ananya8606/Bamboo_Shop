@@ -6,7 +6,6 @@ import Loading from '../components/Loading';
 import { footer } from '../Utils/translateLibrary/footer';
 import PaginationComponent from '../components/PaginationComponent';
 import { fetchSettings } from "../reducers/settingsReducers";
-import { fetchCartItems } from '../reducers/cartReducers';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,24 +15,11 @@ const Home = () => {
 
   const productList = useSelector((state) => state.product.productList);
   const { loading, products, error } = productList;
-
-  const userLogin = useSelector((state) => state.user.userLogin)
-  const { userInformation: userInfo } = userLogin
   
- const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
-  
-  useEffect(() => {
-    dispatch(fetchCartItems());
-  }, [dispatch]);
-
    useEffect(() => {
     dispatch(fetchSettings());
-    if(userInfo)
-    dispatch(listProducts({cartItems,userInfo}));
-    else
-    dispatch(listProducts({}));
-  }, [dispatch,cartItems]);
+    dispatch(listProducts());
+  }, [dispatch]);
   
   return (
     <div className=''>
