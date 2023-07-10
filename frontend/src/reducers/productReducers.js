@@ -4,9 +4,10 @@ import { logout } from './userReducers';
 
 export const listProducts = createAsyncThunk(
   'product/listProducts',
-  async (cartItems, { rejectWithValue }) => {
+  async ({cartItems,userInfo}, { rejectWithValue }) => {
     try {
       const { data } = await api.get('https://bamboo-shop-backend.onrender.com/api/products');
+      if(userInfo){
       const sortedProducts = data.sort((a, b) => {
         const qtyA = cartItems.find(item => item.product === a._id)?.qty || 0;
         const qtyB = cartItems.find(item => item.product === b._id)?.qty || 0;
@@ -14,6 +15,9 @@ export const listProducts = createAsyncThunk(
       });
       console.log(sortedProducts)
       return sortedProducts;
+    }
+    else
+    return data;
     } catch (error) {
       return rejectWithValue(
         error.response && error.response.data.message
@@ -23,6 +27,7 @@ export const listProducts = createAsyncThunk(
     }
   }
 );
+
 export const createProduct = createAsyncThunk('products/createProduct', async (productData,{ getState,rejectWithValue }) => {
   try {
     const userInformation = getState().user.userLogin.userInformation;
