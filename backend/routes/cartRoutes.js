@@ -36,6 +36,9 @@ router.post('/cartItems', protect, asyncHandler(async (req, res) => {
 
     if (existingProduct) {
       existingProduct.qty += qty;
+      const product = await Product.findById(id);
+      product.stockSold +=qty;
+      await product.save();
     } else {
       const product = await Product.findById(id);
 
@@ -50,13 +53,14 @@ router.post('/cartItems', protect, asyncHandler(async (req, res) => {
           category: product.category,
           subCategory: product.subCategory,
         });
+        product.stockSold +=qty;
+        await product.save();
       } else {
         throw new Error('Product not found');
       }
     }
 
     const updatedCart = await cart.save();
-
     res.status(201).json(updatedCart.cartItems);
   } catch (error) {
     res.status(400).json({ message: error.message });
