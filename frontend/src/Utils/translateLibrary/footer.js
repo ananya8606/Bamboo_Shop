@@ -11,10 +11,10 @@ export const footer = {
     hi: "ईकॉम",
     ne: "इकमर्स"
   },
-  allproducts: {
-    en: "All Products",
-    bn: "সমস্ত পণ্য",
-    hi: "सभी उत्पाद",
-    ne: "सबै उत्पादनहरू"
-  }
+ allproducts: {
+  en: "Top Picks",
+  bn: "সর্বাধিক পছন্দ",
+  hi: "शीर्ष पसंद",
+  ne: "मुख्य पसलहरू"
+}
 };
