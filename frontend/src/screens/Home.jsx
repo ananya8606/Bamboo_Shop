@@ -17,6 +17,9 @@ const Home = () => {
   const productList = useSelector((state) => state.product.productList);
   const { loading, products, error } = productList;
 
+  const userLogin = useSelector((state) => state.user.userLogin)
+  const { userInformation: userInfo } = userLogin
+  
  const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   
@@ -26,7 +29,10 @@ const Home = () => {
 
    useEffect(() => {
     dispatch(fetchSettings());
-    dispatch(listProducts(cartItems));
+    if(userInfo)
+    dispatch(listProducts({cartItems,userInfo}));
+    else
+    dispatch(listProducts({}));
   }, [dispatch,cartItems]);
   
   return (
