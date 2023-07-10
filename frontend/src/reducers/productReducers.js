@@ -6,7 +6,7 @@ export const listProducts = createAsyncThunk(
   'product/listProducts',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await api.get('/api/products');
+      const { data } = await api.get('https://bamboo-shop-backend.onrender.com/api/products');
 
       // Sort the products based on stockSold quantity
       const sortedProducts = data.sort((a, b) => b.stockSold - a.stockSold);
