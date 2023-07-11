@@ -217,7 +217,7 @@ export const deleteProduct = createAsyncThunk(
 );
 
 export const uploadImage = createAsyncThunk(
-  'products/uploadImage',
+  'product/uploadImage',
   async (formData, { getState,rejectWithValue }) => {
     try {
       const userInformation = getState().user.userLogin.userInformation;
