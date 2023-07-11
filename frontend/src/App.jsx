@@ -22,6 +22,8 @@ import UserAccountScreen from './screens/UserAccountScreen';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import PaytmPaymentGateway from './components/PaytmPaymentGateway';
+import ProductBulk from './screens/ProductBulk';
+
 function App() {
   return (
     <Router>
@@ -47,6 +49,7 @@ function App() {
         <Route path="/admin/ProductEdit/:id" element={<ProductEdit />} exact />
         <Route path="/my-account/:id" element={<UserAccountScreen />} exact />
         <Route path="/paytm-payment-gateway" element={<PaytmPaymentGateway />} exact />
+        <Route path="/admin/ProductBulk" element={<ProductBulk />} exact />
       </Routes>
       <Footer />
     </Router>
