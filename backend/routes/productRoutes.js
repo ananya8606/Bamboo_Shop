@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const csv = require('csv-parser');
 const { protect, admin } = require('../middleware/authMiddleware.js');
 const cloudinary = require('cloudinary');
 dotenv.config()
@@ -367,4 +368,66 @@ router.post(
     }
   })
 )
+
+router.post('/uploadCSV', protect, admin, upload.single('file'), async (req, res) => {
+  const csvFilePath = req.file.path;
+
+  try {
+    const results = [];
+
+    await new Promise((resolve, reject) => {
+      fs.createReadStream(csvFilePath)
+        .pipe(csv())
+        .on('data', (data) => {
+          console.log(data);
+          results.push(data);
+        })
+        .on('end', () => {
+          resolve(); // Resolve the promise when the CSV processing is finished
+        })
+        .on('error', (error) => {
+          reject(error); // Reject the promise if there's an error during CSV processing
+        });
+    });
+
+    // Process the CSV data and save it to the database
+    for (const item of results) {
+      const product = new Product({
+        user: req.user._id,
+        brandName: item.brandName,
+        image: item.image,
+        brand: item.brand,
+        category: item.category,
+        subCategory: item.subCategory,
+        description: item.description,
+        discount: item.discount,
+        cost: item.cost,
+        quantity: item.quantity,
+        discountedCost: item.discount
+          ? item.cost - (item.discount * item.cost) / 100
+          : item.cost,
+      });
+
+      // Save the product to the database
+      try {
+        await product.save();
+      } catch (error) {
+        console.error('Error saving product to database:', error);
+        continue; // Skip saving the product if there's an error saving it to the database
+      }
+    }
+
+    res.status(201).json({ message: 'CSV file uploaded successfully' });
+  } catch (error) {
+    // Delete the uploaded CSV file on error
+    fs.unlink(csvFilePath, (err) => {
+      if (err) {
+        console.error('Error deleting CSV file:', err);
+      }
+    });
+    res.status(400).json({ message: 'CSV file upload failed' });
+  }
+});
+
+
 module.exports = router
