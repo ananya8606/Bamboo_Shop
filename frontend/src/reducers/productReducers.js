@@ -239,6 +239,31 @@ export const uploadImage = createAsyncThunk(
   }
 );
 
+
+export const uploadFile =  createAsyncThunk(
+  'product/uploadFile',async (file,{ getState,rejectWithValue }) => {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const userInformation = getState().user.userLogin.userInformation;
+    const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${userInformation.token}`,
+        },
+    };
+    const response = await api.post('https://bamboo-shop-backend.onrender.com/api/products/uploadCSV', formData,config );
+    return response.data;
+  } catch (error) {
+    return rejectWithValue(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    );
+  }
+});
+
 const productSlice = createSlice({
   name: 'product',
   initialState: {
@@ -295,6 +320,12 @@ const productSlice = createSlice({
         error:null, 
         image:null
       },
+      uploadFile:{
+        loading: false,
+        error: null,
+        success: false,
+        file:null
+      }
       },
   reducers: {
       productDetailsClear: (state) => {
@@ -459,6 +490,23 @@ productEditReset: (state) => {
           .addCase(createProductReview.rejected, (state, action) => {
             state.productReviewCreate.loading = false;
             state.productReviewCreate.error = action.error.message;
+          })
+          .addCase(uploadFile.pending, (state) => {
+            state.uploadFile.loading = true;
+            state.uploadFile.success = false;
+            state.uploadFile.error = null;
+            state.uploadFile.file = null;
+          })
+          .addCase(uploadFile.fulfilled, (state, action) => {
+            state.uploadFile.loading = false;
+            state.uploadFile.success = true;
+            state.uploadFile.error = null;
+            state.uploadFile.file = action.payload;
+          })
+          .addCase(uploadFile.rejected, (state, action) => {
+            state.uploadFile.loading = false;
+            state.uploadFile.file = null;
+            state.uploadFile.error = action.payload;
           });
         },
       });      
