@@ -128,6 +128,12 @@ const preloadedState = {
       error:null, 
       image:null
     },
+      uploadFile:{
+        loading: false,
+        success: false,
+        error: null,
+        file:null
+      }
     },
     order: {
       orderCreate:{
