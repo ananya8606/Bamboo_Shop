@@ -143,9 +143,13 @@ const settings = useSelector((state) => state.settings);
                     <Link to={`/admin/allUsers`} onClick={showAuthOptions}>
                     {nav.allusers[language]}
                     </Link>
-                    <div className='underline'></div>
+                     <div className='underline'></div>
                     <Link to={`/admin/ProductCreate`} onClick={showAuthOptions}>
                     {nav.create[language]}
+                    </Link>
+                    <div className='underline'></div>
+                    <Link to={`/admin/ProductBulk`} onClick={showAuthOptions}>
+                    {nav.createbulk[language]}
                     </Link>
                     <div className='underline'></div>
                   </>
