@@ -11,7 +11,6 @@ const ImageCarousel = () => {
 
   return (
     <div className='slide-container'>
-      {loading && <Loading />}
       <Slide className='manageSlide'>
         {products &&
           products.map((items) => (
