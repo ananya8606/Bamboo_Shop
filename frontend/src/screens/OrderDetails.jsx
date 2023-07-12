@@ -27,7 +27,7 @@ const OrderDetails = () => {
     const loadData = async () => {
       setLoading(true)
       const { data } = await api.get(
-        `https://bamboo-shop-backend.onrender.com/api/orders/admin/order/${id}`,
+        `https://bamboo-shop-backend-53cf.onrender.com//api/orders/admin/order/${id}`,
         config
       )
       setOrderdetails(data)
