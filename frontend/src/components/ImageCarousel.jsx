@@ -10,7 +10,6 @@ const ImageCarousel = () => {
   const { loading, products, error } = productList
 
   return (
-    <div className='slide-container'>
       <Slide className='manageSlide'>
         {loading ? <Loading />:(products &&
           products.map((items) => (
@@ -24,7 +23,6 @@ const ImageCarousel = () => {
             </div>
           )))}
       </Slide>
-    </div>
   )
 }
 
