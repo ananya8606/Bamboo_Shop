@@ -12,7 +12,7 @@ const ImageCarousel = () => {
   return (
     <div className='slide-container'>
       <Slide className='manageSlide'>
-        {products &&
+        {loading ? <Loading />:(products &&
           products.map((items) => (
             <div className='each-slide' key={items._id}>
               <Link
@@ -22,7 +22,7 @@ const ImageCarousel = () => {
                 <img src={items.image} alt='' />
               </Link>
             </div>
-          ))}
+          )))}
       </Slide>
     </div>
   )
