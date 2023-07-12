@@ -10,7 +10,7 @@ export const updateSettings = createAsyncThunk('settings/updateSettings', async 
     },
   };
 
-  const response = await api.put('https://bamboo-shop-backend.onrender.com/api/users/user/updateLanguage', {language, country, currency}, config);
+  const response = await api.put('https://bamboo-shop-backend-53cf.onrender.com/api/users/user/updateLanguage', {language, country, currency}, config);
   return response.data;
 });
 
@@ -25,7 +25,7 @@ export const fetchSettings = createAsyncThunk('settings/fetchSettings', async (_
     },
   };
 
-  const response = await api.get('https://bamboo-shop-backend.onrender.com/api/users/fetchLanguage', config);
+  const response = await api.get('https://bamboo-shop-backend-53cf.onrender.com/api/users/fetchLanguage', config);
   console.log(response)
   return response.data;
  } catch (error) {
