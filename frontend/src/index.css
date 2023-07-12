@@ -1519,5 +1519,6 @@ ul.pagination li.active a {
   background-color: #45a049;
 }
 
+.react-slideshow-wrapper .images-wrap{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap !important;}.react-slideshow-wrapper .images-wrap>div[aria-hidden='true']{display:none !important;}
 
 
