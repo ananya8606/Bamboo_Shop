@@ -22,8 +22,10 @@ const Home = () => {
   }, [dispatch]);
   
   return (
-    <div className=''>
+    <div>
+      <div>
       <ImageCarousel />
+       </div>
       {loading ? (
         <Loading />
       ) : (
