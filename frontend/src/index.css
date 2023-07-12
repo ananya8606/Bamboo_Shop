@@ -1518,7 +1518,20 @@ ul.pagination li.active a {
 .payment-form button:hover {
   background-color: #45a049;
 }
-.react-slideshow-wrapper .images-wrap{flex-wrap:nowrap}.react-slideshow-wrapper .images-wrap>div[aria-hidden='true']{display:block}
+.react-slideshow-wrapper .images-wrap{
+  flex-wrap:nowrap;
+}
+  .react-slideshow-wrapper .images-wrap .div[aria-hidden='false']{
+  display:block;width:620px;
+  }
+  .react-slideshow-wrapper .images-wrap>div[aria-hidden='true']{
+    display:block;
+  }
+.each-slide{
+  width: 620px;
+  display: flex; align-items: center; justify-content: center;
+}
+
 
 
 
