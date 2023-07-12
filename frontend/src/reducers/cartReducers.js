@@ -14,7 +14,7 @@ export const addToCart = createAsyncThunk(
           Authorization: `Bearer ${userInformation.token}`,
         },
       };
-    const response = await api.post(`https://bamboo-shop-backend.onrender.com/api/cart/cartItems`, 
+    const response = await api.post(`https://bamboo-shop-backend-53cf.onrender.com/api/cart/cartItems`, 
       {id,qty}
     ,config);
     console.log(response)
@@ -46,7 +46,7 @@ export const removeFromCart = createAsyncThunk(
           Authorization: `Bearer ${userInformation.token}`,
         },
       };
-    const response = await api.post(`https://bamboo-shop-backend.onrender.com/api/cart/removeItem`, 
+    const response = await api.post(`https://bamboo-shop-backend-53cf.onrender.com/api/cart/removeItem`, 
       {id}
     ,config);
     localStorage.setItem('cartItems', JSON.stringify(response.data));
@@ -77,7 +77,7 @@ export const saveShippingAddress = createAsyncThunk(
         Authorization: `Bearer ${userInformation.token}`,
       },
     };
-  const response = await api.put(`https://bamboo-shop-backend.onrender.com/api/cart/saveShippingAddress`, 
+  const response = await api.put(`https://bamboo-shop-backend-53cf.onrender.com/api/cart/saveShippingAddress`, 
     {data}
   ,config);
   localStorage.setItem('shippingAddress', JSON.stringify(response.data));
@@ -108,7 +108,7 @@ export const savePaymentMethod = createAsyncThunk(
         Authorization: `Bearer ${userInformation.token}`,
       },
     };
-  const response = await api.put(`https://bamboo-shop-backend.onrender.com/api/cart/savePaymentMethod`, 
+  const response = await api.put(`https://bamboo-shop-backend-53cf.onrender.com/api/cart/savePaymentMethod`, 
     {data}
   ,config);
   localStorage.setItem('paymentMethod', JSON.stringify(response.data));
@@ -130,7 +130,7 @@ export const savePaymentInfo = createAsyncThunk(
         Authorization: `Bearer ${userInformation.token}`,
       },
     };
-  const response = await api.put(`https://bamboo-shop-backend.onrender.com/api/cart/savePaymentInfo`, 
+  const response = await api.put(`https://bamboo-shop-backend-53cf.onrender.com/api/cart/savePaymentInfo`, 
     {paymentInfo}
   ,config);
   console.log(response)
@@ -160,7 +160,7 @@ export const fetchCartItems = createAsyncThunk(
           Authorization: `Bearer ${userInformation.token}`,
         },
       };
-      const response = await api.get('https://bamboo-shop-backend.onrender.com/api/cart/fetchCartItems',config);
+      const response = await api.get('https://bamboo-shop-backend-53cf.onrender.com/api/cart/fetchCartItems',config);
       console.log('cart'+response.data)
       return response.data;
     } catch (error) {
