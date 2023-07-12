@@ -13,7 +13,7 @@ connectDB()
 const app = express()
 
 const corsOptions = {
-  origin: "https://bamboo-shop.onrender.com" // frontend URI (ReactJS)
+  origin: "https://bamboo-shop-zh9v.onrender.com" // frontend URI (ReactJS)
 }
 
 /* Moved the app.use(cors(corsOptions)) middleware above app.use(express.json()) to ensure
@@ -69,7 +69,7 @@ structure to distinguish them from server-side code files.*/
 }
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://bamboo-shop.onrender.com');
+  res.setHeader('Access-Control-Allow-Origin', 'https://bamboo-shop-zh9v.onrender.com');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
