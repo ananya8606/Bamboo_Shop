@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Slide } from 'react-slideshow-image'
 import { useDispatch, useSelector } from 'react-redux'
-
+import 'react-slideshow-image/dist/styles.css'
 import { Link } from 'react-router-dom'
 import Loading from './Loading'
 const ImageCarousel = () => {
