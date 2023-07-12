@@ -1522,3 +1522,8 @@ ul.pagination li.active a {
   background-color: #45a049;
 }
 
+.react-slideshow-container {
+  width:80%;
+  margin-left:10%;
+  margin-right:10%;
+}
