@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 import Loading from './Loading'
-import 'react-slideshow-image/dist/styles.css'
 const ImageCarousel = () => {
   const productList = useSelector((state) => state.product.productList)
   const { loading, products, error } = productList
