@@ -5,10 +5,18 @@ import Loading from './Loading'
 import { logout } from '../reducers/userReducers'
 import { useDispatch, useSelector } from 'react-redux'
 import { nav } from "../Utils/translateLibrary/navbar";
+import { layer } from '@fortawesome/fontawesome-svg-core'
 const Navbar = () => {
 const dispatch = useDispatch();
 const settings = useSelector((state) => state.settings);
   const { language } = settings;
+  const showList = () => {
+    document.getElementById('extraitems').classList.toggle('show-list')
+  }
+  const Logout = () => {
+    dispatch(logout())
+    showAuthOptions()
+  }
   const [text, setText] = useState('')
   const productSearch = useSelector((state) => state.product.productSearch);
   const { loading, products, error } = productSearch;
@@ -16,14 +24,6 @@ const settings = useSelector((state) => state.settings);
   const { userInformation: userInfo } = userLogin
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
-   const showList = () => {
-    document.getElementById('extraitems').classList.toggle('show-list')
-  }
-  const Logout = () => {
-    dispatch(logout())
-    showAuthOptions()
-  }
-
   useEffect(() => {
     if(text)
     dispatch(productsSearch(text));
@@ -64,7 +64,7 @@ const settings = useSelector((state) => state.settings);
                     <div className='searchItem-inner'>
                       <span>{product.brandName}</span>
                       <span>
-                        <span className='brandName'>Brand</span> {product.brand}
+                        <span className='brandName'>{nav.br[language]}</span> {product.brand}
                       </span>
                     </div>
                   </div>
@@ -129,6 +129,13 @@ const settings = useSelector((state) => state.settings);
                 {nav.myorders[language]}
                 </Link>
                 <div className='underline'></div>
+                <Link
+                  to={`/myqueries/${userInfo._id}`}
+                  onClick={showAuthOptions}
+                >
+                {nav.my[language]}
+                </Link>
+                <div className='underline'></div>
                 {userInfo.isAdmin && (
                   <>
                     {' '}
@@ -140,10 +147,14 @@ const settings = useSelector((state) => state.settings);
                     {nav.allorders[language]}
                     </Link>
                     <div className='underline'></div>
+                    <Link to={`/admin/allQueries`} onClick={showAuthOptions}>
+                    {nav.aq[language]}
+                    </Link>
+                    <div className='underline'></div>
                     <Link to={`/admin/allUsers`} onClick={showAuthOptions}>
                     {nav.allusers[language]}
                     </Link>
-                     <div className='underline'></div>
+                    <div className='underline'></div>
                     <Link to={`/admin/ProductCreate`} onClick={showAuthOptions}>
                     {nav.create[language]}
                     </Link>
@@ -161,6 +172,11 @@ const settings = useSelector((state) => state.settings);
             )}
           </div>
         </div>
+        <div className='shopping'>
+        <Link to="/contact-us">
+        <i className='fas fa-comment'></i>
+      </Link>
+      </div>
       </div>
       <div className='search-form-small'>
         <input
