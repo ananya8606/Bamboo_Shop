@@ -240,8 +240,7 @@ router.post(
         email: user.email,
         type: type,
         query: query,
-        active: true,
-        closed: false
+        active: true
       });
 
       await newQuery.save(); // Save the new query
