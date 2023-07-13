@@ -9,6 +9,7 @@ import {
   getUserDetails,
   updateUserProfile,
 } from '../reducers/userReducers';
+import { uas } from '../Utils/translateLibrary/useraccount';
 
 const UserAccountScreen = () => {
   const [name, setName] = useState('');
@@ -18,7 +19,8 @@ const UserAccountScreen = () => {
   const { id } = useParams();
   const userLogin = useSelector((state) => state.user.userLogin);
   const { userInformation: userInfo } = userLogin;
-
+  const settings = useSelector((state) => state.settings);
+  const { language } = settings;
   const userDetails = useSelector((state) => state.user.userDetails);
   const { loading, error, user } = userDetails;
 
@@ -55,19 +57,19 @@ const UserAccountScreen = () => {
 
   return (
     <div className='userScreen'>
-      <span className='head'>Your Account</span>
+      <span className='head'>{uas.ya[language]}</span>
       {success && <Message message='Updated' color='green' />}
       <form onSubmit={submitHandler}>
         <div className='user-form'>
-          <span>UserID</span>
+          <span>{uas.us[language]}</span>
           <span>{user._id}</span>
         </div>
         <div className='user-form'>
-          <span>Account Created</span>
+          <span>{uas.ac[language]}</span>
           <span>{user.createdAt?.substring(0, 10)}</span>
         </div>
         <div className='user-form'>
-          <span>Username</span>
+          <span>{uas.u[language]}</span>
           <input
             type='text'
             value={name}
@@ -76,7 +78,7 @@ const UserAccountScreen = () => {
         </div>
 
         <div className='user-form'>
-          <span>Email</span>
+          <span>{uas.e[language]}</span>
           <input
             type='text'
             value={email}
@@ -84,7 +86,7 @@ const UserAccountScreen = () => {
           />
         </div>
         <div className='user-form'>
-          <span>Password</span>
+          <span>{uas.p[language]}</span>
           <input
             type='text'
             value={password}
@@ -92,7 +94,7 @@ const UserAccountScreen = () => {
           />
         </div>
         <button className='userUpdate' type='submit'>
-          Update Info
+          {uas.ui[language]}
         </button>
       </form>
     </div>
