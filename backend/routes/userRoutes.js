@@ -228,4 +228,64 @@ router.get(
   })
 )
 
+router.post(
+  '/query',
+  protect,
+  asyncHandler(async (req, res) => {
+    const { type, query } = req.body;
+    const user = await User.findById(req.user._id);
+    if (user) {
+      const newQuery = new Query({
+        user: req.user._id,
+        email: user.email,
+        type: type,
+        query: query,
+        active: true,
+        closed: false
+      });
+
+      await newQuery.save(); // Save the new query
+
+      const active = true;
+      user.queries.push({ type, query, active }); // Add the new query to the queries array
+      await user.save(); // Save the updated user document
+      res.status(201).json("Query Created"); // Return the success message
+    } else {
+      res.status(404);
+      throw new Error('User not found');
+    }
+  })
+);
+
+router.get(
+  '/admin/allqueries',
+  protect,
+  admin,
+  asyncHandler(async (req, res) => {
+    const data = await Query.find()
+    if (data) {
+      res.status(201).json(data)
+    } else {
+      res.status(403)
+      throw new Error('You have no queries till date admin')
+    }
+  })
+)
+
+router.put(
+  '/admin/changequerystatus/:id',
+  protect,
+  admin,
+  asyncHandler(async (req, res) => {
+    const query = await Query.findOne({ _id: req.params.id })
+    if (query) {
+      query.active = !query.active
+      await query.save()
+      res.status(201).json('Success')
+    } else {
+      res.status(401).json('Unauthorized')
+    }
+  })
+)
+
 module.exports = router
