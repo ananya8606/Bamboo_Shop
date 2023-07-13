@@ -34,7 +34,13 @@ const userSchema = mongoose.Schema(
       type:String,
       required:true,
       default: "inr"
-    }
+    },
+    queries:[{
+      type:{type:String},
+      query:{type:String},
+      active:{type:Boolean, default: false,},
+      closed:{type:Boolean, default: false}
+    }]
   },
   {
     timestamps: true,
