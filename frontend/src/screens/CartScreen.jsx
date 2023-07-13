@@ -67,7 +67,7 @@ const CartScreen = () => {
                   <span>Rs. {item.price}</span>
                   <div className="quantity-controller">
                     <button
-                      onClick={() => dispatch(addToCart({ id: item.product, qty: (item.qty > 0 ? -1 : 0) }))}
+                      onClick={() => dispatch(addToCart({ id: item.product, qty: (item.qty > 1 ? -1 : 0) }))}
                       className="quantity-btn"
                     >
                       -
