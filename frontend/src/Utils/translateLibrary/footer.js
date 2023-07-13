@@ -1,9 +1,9 @@
 export const footer = {
   copyright: {
-    en: "© 2022 Copyright:",
-    bn: "© ২০২২ কপিরাইট:",
-    hi: "© 2022 कॉपीराइट:",
-    ne: "© २०२२ कपिराइट:"
+  en: "© 2023 Copyright:",
+  bn: "© ২০২৩ কপিরাইট:",
+  hi: "© 2023 कॉपीराइट:",
+  ne: "© २०२३ कपिराइट:"
   },
   ecomm: {
     en: "ECOMM",
