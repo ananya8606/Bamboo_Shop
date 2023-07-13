@@ -244,7 +244,6 @@ router.post(
       });
 
       await newQuery.save(); // Save the new query
-
       const active = true;
       user.queries.push({ type, query, active }); // Add the new query to the queries array
       await user.save(); // Save the updated user document
@@ -271,20 +270,36 @@ router.get(
   })
 )
 
+
 router.put(
   '/admin/changequerystatus/:id',
   protect,
   admin,
   asyncHandler(async (req, res) => {
-    const query = await Query.findOne({ _id: req.params.id })
-    if (query) {
-      query.active = !query.active
-      await query.save()
-      res.status(201).json('Success')
+    const query = await Query.findOne({ _id: req.params.id });
+    const user = await User.findById(req.user._id);
+    if (query && user) {
+      const queryIndex = user.queries.findIndex(q => {
+        const qId = parseInt(q._id.toString(), 16); // Convert q's ObjectId to number
+        const queryId = parseInt(query._id.toString(), 16); // Convert query's ObjectId to number
+      
+        return qId === queryId + 1;
+      });
+      
+      console.log(queryIndex)
+      if (queryIndex !== -1) {
+        query.active = !query.active;
+        user.queries[queryIndex].active = !user.queries[queryIndex].active;
+        await query.save();
+        await user.save();
+        res.status(201).json('Success');
+      } else {
+        res.status(404).json('Query not found');
+      }
     } else {
-      res.status(401).json('Unauthorized')
+      res.status(401).json('Unauthorized');
     }
   })
-)
+);
 
 module.exports = router
