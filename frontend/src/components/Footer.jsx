@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux'
@@ -12,32 +11,32 @@ const settings = useSelector((state) => state.settings);
 			<footer className='footer-container'>
 				<div className='footer-icons'>
 					<a
-						href='https://github.com/ananya8606'
+						href='https://facebook.com/'
 						aria-label='github account'
 						target='_blank'
 						rel='noopener noreferrer'>
-						<i className='fab fa-github footer-icon' />
+						<i className='fab fa-facebook footer-icon' />
 					</a>
 					<a
-						href='https://www.linkedin.com/in/ananyaiiitr/'
+						href='https://www.instagram.com/'
 						aria-label='linkedin account'
 						target='_blank'
 						rel='noopener noreferrer'>
-						<i className='fab fa-linkedin-in footer-icon' />
+						<i className='fab fa-instagram footer-icon' />
 					</a>
 					<a
-						href='https://twitter.com/AnanyaG33442335'
+						href='https://twitter.com/'
 						aria-label='twitter account'
 						target='_blank'
 						rel='noopener noreferrer'>
 						<i className='fab fa-twitter footer-icon' />
 					</a>
 					<a
-						href='mailto:ananyaiiitr@gmail.com'
+						href='https://www.youtube.com/'
 						aria-label='developer portfolio'
 						target='_blank'
 						rel='noopener noreferrer'>
-						<i className='fas fa-envelope footer-icon' />
+						<i className='fab fa-youtube footer-icon' />
 					</a>
 				</div>
       <footer className="bg-dark text-center navbar-dark text-lg-start">
