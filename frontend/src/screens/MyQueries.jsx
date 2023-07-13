@@ -45,7 +45,7 @@ const MyQueries = () => {
                   </span>
                   <span>
                     {mq.qs[language]} :
-                    {query.active == true ? (
+                    {query.active ? (
                       <span> {mq.a[language]} <i className='fas fa-check'></i></span>
                     ) : (
                       <span> {mq.c[language]} <i className='far fa-times-circle'></i></span>
