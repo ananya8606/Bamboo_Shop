@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux'
@@ -9,6 +10,9 @@ const settings = useSelector((state) => state.settings);
 	return (
 		<Container>
 			<footer className='footer-container'>
+			     <p style={{fontWeight:'bold'}}>
+				Follow us on
+			    </p>
 				<div className='footer-icons'>
 					<a
 						href='https://facebook.com/'
