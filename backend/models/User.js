@@ -38,8 +38,7 @@ const userSchema = mongoose.Schema(
     queries:[{
       type:{type:String},
       query:{type:String},
-      active:{type:Boolean, default: false,},
-      closed:{type:Boolean, default: false}
+      active:{type:Boolean, default: false}
     }]
   },
   {
