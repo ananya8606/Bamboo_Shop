@@ -59,7 +59,25 @@ export const nav = {
       hi: "नया उत्पाद बनाएँ",
       ne: "नयाँ उत्पादन बनाउनुहोस्"
     },
-     createbulk: {
+    my: {
+      en: "My Queries",
+      bn: "আমার প্রশ্ন",
+      hi: "मेरे प्रश्न",
+      ne: "मेरो प्रश्न"
+    },
+    aq: {
+      en: "All Queries",
+      bn: "সমস্ত প্রশ্ন",
+      hi: "सभी प्रश्न",
+      ne: "सबै प्रश्न"
+    },
+    br: {
+      en: "brand",
+      bn: "ব্র্যান্ড",
+      hi: "ब्रांड",
+      ne: "ब्राण्ड"
+    },
+    createbulk: {
       en: "Create products in bulk",
       bn: "মাল সমূহ সমপূর্ণ রাখুন",
       hi: "थोक में उत्पाद बनाएं",
