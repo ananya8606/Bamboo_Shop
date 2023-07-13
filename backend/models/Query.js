@@ -9,8 +9,7 @@ const querySchema = mongoose.Schema(
       email:{type:String},
       type:{type:String},
       query:{type:String},
-      active:{type:Boolean, default: false,},
-      closed:{type:Boolean, default: false}
+      active:{type:Boolean, default: false}
   },
   {
     timestamps: true,
