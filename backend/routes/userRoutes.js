@@ -278,7 +278,7 @@ router.put(
   admin,
   asyncHandler(async (req, res) => {
     const query = await Query.findOne({ _id: req.params.id });
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(query.user._id);
     if (query && user) {
       const queryIndex = user.queries.findIndex(q => {
         const qId = parseInt(q._id.toString(), 16); // Convert q's ObjectId to number
