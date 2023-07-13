@@ -3,7 +3,7 @@ const generateToken = require('../utils/generateToken.js');
 const User = require('../models/User.js');
 const express = require('express');
 const { protect, admin } = require('../middleware/authMiddleware.js');
-
+const Query = require('../models/Query.js')
 const capitalize = require('../utils/capitalize.js');
 const router = express.Router()
 
