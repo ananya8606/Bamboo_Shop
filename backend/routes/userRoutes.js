@@ -271,6 +271,7 @@ router.get(
 )
 
 
+
 router.put(
   '/admin/changequerystatus/:id',
   protect,
@@ -282,14 +283,12 @@ router.put(
       const queryIndex = user.queries.findIndex(q => {
         const qId = parseInt(q._id.toString(), 16); // Convert q's ObjectId to number
         const queryId = parseInt(query._id.toString(), 16); // Convert query's ObjectId to number
-      
         return qId === queryId + 1;
       });
-      
       console.log(queryIndex)
       if (queryIndex !== -1) {
         query.active = !query.active;
-        user.queries[queryIndex].active = !user.queries[queryIndex].active;
+        user.queries[queryIndex].active = query.active
         await query.save();
         await user.save();
         res.status(201).json('Success');
@@ -301,5 +300,6 @@ router.put(
     }
   })
 );
+
 
 module.exports = router
