@@ -1524,6 +1524,22 @@ ul.pagination li.active a {
   border-radius: 4px;
 }
 
+.payment-form input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.payment-form textarea{
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .payment-form button {
   display: block;
   width: 100%;
