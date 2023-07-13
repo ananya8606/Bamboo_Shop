@@ -73,6 +73,21 @@ const preloadedState = {
       error:null,
       users:[]
     },
+      createQuery:{
+      success:false, 
+      error:null,
+      loading:false
+    },
+    queryList:{
+      loading: false,
+      queries:[],
+      error: null
+    },
+    changeQueryStatus:{
+      loading:false,
+      success:false,
+      error:null
+    },
   },
   product: {
     productList:{
