@@ -74,6 +74,92 @@ export const updateUserProfile = createAsyncThunk('user/updateUserProfile', asyn
   return response.data;
 });
 
+export const createQuery = createAsyncThunk(
+  'user/createQuery',
+  async ({type,query}, { getState }) => {
+    try {
+      const {
+        user:{userLogin: { userInformation },
+      }} = getState();
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInformation.token}`,
+        },
+      };
+      const { data } = await api.post(`https://bamboo-shop-backend-53cf.onrender.com/api/users/query`,{type,query}, config);
+
+      return data;
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+
+      throw new Error(message);
+    }
+  }
+);
+
+export const listQueries = createAsyncThunk(
+  'user/listQueries',
+  async (id, { getState }) => {
+     try{ 
+      const {
+        user:{userLogin: { userInformation },
+      }} = getState();
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInformation.token}`,
+        },
+      };
+      const { data } = await api.get(`https://bamboo-shop-backend-53cf.onrender.com/api/users/admin/allqueries`, config);
+      return data;
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+
+      throw new Error(message);
+    }
+  }
+);
+
+
+export const changeQueryStatus = createAsyncThunk(
+  'user/changeQueryStatus',
+  async (id, { getState }) => {
+    try {
+      const {
+        user:{userLogin: { userInformation },
+      }} = getState();
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInformation.token}`,
+        },
+      };
+
+      const { data } = await api.put(
+        `https://bamboo-shop-backend-53cf.onrender.com/api/users/admin/changequerystatus/${id}`,
+        {},
+        config
+      );
+
+      return data;
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+
+      throw new Error(message);
+    }
+  }
+);
+
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -108,6 +194,21 @@ export const userSlice = createSlice({
       success:false,
       error:null,
       users:[]
+    },
+    createQuery:{
+      success:false, 
+      error:null,
+      loading:false
+    },
+    queryList:{
+      loading: false,
+      queries:[],
+      error: null
+    },
+    changeQueryStatus:{
+      loading:false,
+      success:false,
+      error:null
     },
   },
   reducers: {
@@ -215,6 +316,45 @@ export const userSlice = createSlice({
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.updateProfile.loading = false;
         state.updateProfile.error = action.error.message;
+      })
+     .addCase(createQuery.pending, (state) => {
+        state.createQuery.loading = true;
+      })
+      .addCase(createQuery.fulfilled, (state, action) => {
+        state.createQuery.loading = false;
+        state.createQuery.success = true;
+        state.createQuery.error = null;
+      })
+      .addCase(createQuery.rejected, (state, action) => {
+        state.createQuery.loading = false;
+        state.createQuery.success = false;
+        state.createQuery.error = action.error.message;
+      })
+      .addCase(listQueries.pending, (state) => {
+        state.queryList.loading = true;
+        state.queryList.error = null;
+      })
+      .addCase(listQueries.fulfilled, (state, action) => {
+        state.queryList.loading = false;
+        state.queryList.queries = action.payload;
+        state.queryList.error = null;
+      })
+      .addCase(listQueries.rejected, (state, action) => {
+        state.queryList.loading = false;
+        state.queryList.error = action.error.message;
+      })
+      .addCase(changeQueryStatus.pending, (state) => {
+        state.changeQueryStatus.loading = true;
+      })
+      .addCase(changeQueryStatus.fulfilled, (state, action) => {
+        state.changeQueryStatus.loading = false;
+        state.changeQueryStatus.success = true;
+        state.changeQueryStatus.error = null;
+      })
+      .addCase(changeQueryStatus.rejected, (state, action) => {
+        state.changeQueryStatus.loading = false;
+        state.changeQueryStatus.success = false;
+        state.changeQueryStatus.error = action.error.message;
       });
   },
 });
