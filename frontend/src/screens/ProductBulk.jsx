@@ -4,6 +4,7 @@ import Message from '../components/Message';
 import Loading from '../components/Loading';
 import { uploadFile } from '../reducers/productReducers';
 import { useNavigate } from 'react-router-dom';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const ProductCreate = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,10 @@ const ProductCreate = () => {
   const history = useNavigate();
 
   const [file, setFile] = useState(null);
+  
+useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
 
   const handleFileUpload = (event) => {
     event.preventDefault();
