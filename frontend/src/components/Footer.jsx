@@ -3,9 +3,14 @@ import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux'
 import './footer.css';
 import { footer } from "../Utils/translateLibrary/footer";
+import { fetchSettings } from "../reducers/settingsReducers";
+
 const Footer = () => {
 const settings = useSelector((state) => state.settings);
   const { language } = settings;
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
 	return (
 		<Container>
 			<footer className='footer-container'>
