@@ -39,7 +39,7 @@ useEffect(() => {
     .setLngLat([longitude, latitude])
     .addTo(map);
 
-    marker.setOffset([280,-310]);
+    marker.setOffset([longitude,-310]);
     return () => map.remove(); // Cleanup map instance on component unmount
   }, [latitude, longitude]);
 
