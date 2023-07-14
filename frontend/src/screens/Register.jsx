@@ -5,6 +5,7 @@ import Loading from '../components/Loading';
 import Message from '../components/Message';
 import { Link} from 'react-router-dom';
 import { r } from "../Utils/translateLibrary/register";
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const Register = () => {
   const settings = useSelector((state) => state.settings);
@@ -14,6 +15,11 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const [passwordagain, setPasswordagain] = useState('')
     const [username, setUsername] = useState('')
+  
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+  
     const handleSubmit = (e) => {
       e.preventDefault()
       setMessage(null)
