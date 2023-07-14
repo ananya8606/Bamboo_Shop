@@ -4,6 +4,7 @@ import { savePaymentMethod } from '../reducers/cartReducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { pay } from "../Utils/translateLibrary/paymentMethod";
 import { useNavigate } from 'react-router-dom';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const Payment = () => {
   const settings = useSelector((state) => state.settings);
@@ -14,6 +15,11 @@ const Payment = () => {
   const [check, setChecked] = useState(false);
   const [check1, setChecked1] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+
   const onChangeHandler = (e, id) => {
     console.log('value of id', id);
     if (id === 1) {
