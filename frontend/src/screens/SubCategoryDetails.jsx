@@ -8,6 +8,8 @@ import Loading from '../components/Loading'
 import { useParams } from 'react-router-dom';
 import { y } from "../Utils/translateLibrary/category";
 import PaginationComponent from '../components/PaginationComponentCategory';
+import { fetchSettings } from "../reducers/settingsReducers";
+
 const CategoryDetails = () => {
   const  { id: productId } = useParams();
   const settings = useSelector((state) => state.settings);
@@ -19,7 +21,9 @@ const CategoryDetails = () => {
   const [value, setValue] = useState(10000)
   const [minValue, setMinValue] = useState(100)
   const categoryId = useParams().subcategoryName;
-
+useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
   const handleChange = (value) => {
     setValue(value)
   }
