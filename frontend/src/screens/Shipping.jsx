@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../reducers/cartReducers';
 import { sh } from "../Utils/translateLibrary/shipping";
 import { fetchCartItems } from '../reducers/cartReducers';
+import { fetchSettings } from "../reducers/settingsReducers";
+
 const Shipping = () => {
   const settings = useSelector((state) => state.settings);
   const { language } = settings;
@@ -28,7 +30,9 @@ const Shipping = () => {
   const { userInformation: userInfo } = userLogin;
   const dispatch = useDispatch();
   const history = useNavigate();
-
+useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(saveShippingAddress({
