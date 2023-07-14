@@ -5,6 +5,7 @@ import { addToCart, removeFromCart } from '../reducers/cartReducers';
 import { c } from "../Utils/translateLibrary/cart";
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchCartItems } from '../reducers/cartReducers';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const CartScreen = () => {
   const { id: productId } = useParams();
@@ -19,6 +20,11 @@ const CartScreen = () => {
   const { cartItems } = cart;
   const userLogin = useSelector((state) => state.user.userLogin)
   const { userInformation: userInfo } = userLogin
+  
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+  
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
