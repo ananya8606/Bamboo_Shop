@@ -57,12 +57,12 @@ useEffect(() => {
 
   return (
     <>
-   <div className='container location-container' style={{marginBottom:'20px'}}>
-    <div style={{margin:'15px',width:'50%'}}>
+  <div className='container location-container' style={{marginBottom:'20px'}}>
+    <div className="map-container" style={{margin:'15px'}}>
       <h2 style={{color:'limegreen'}}>{lo.lom[language]}</h2>
       <div id="map" style={{height: '300px',margin:'30px' }}></div>
      </div>
-    <div class="paytm-payment-gateway" style={{marginTop:'15px',width:'50%'}}>
+    <div className="paytm-payment-gateway query-container" style={{marginTop:'15px'}}>
       <div class="payment-form">
         <h2 style={{color:'limegreen',textAlign:'center',marginBottom:'15px'}}>{lo.s[language]}</h2>
         {updated ? 
