@@ -18,6 +18,9 @@ const PaytmPaymentGateway = () => {
    const [cardNumber, setCardNumber] = useState('');
    const [expiry, setExpiry] = useState('');
    const [cvv, setCvv] = useState('');
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
   };
