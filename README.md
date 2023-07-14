@@ -9,6 +9,9 @@ https://github.com/ananya8606/Bamboo_Shop/assets/52853286/8c3ee4b1-5111-40ba-8b5
 
 3. Admin functionalities
    
+https://github.com/ananya8606/Bamboo_Shop/assets/52853286/0f0ed6d4-c999-4555-acb3-f87662f9c575
+
+
 
 
 
