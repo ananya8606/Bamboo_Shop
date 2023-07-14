@@ -13,6 +13,7 @@ import {
   productSearchClear
 } from '../reducers/productReducers';
 import { useParams,useNavigate } from 'react-router-dom';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const ProductScreen = () => {
   const settings = useSelector((state) => state.settings);
@@ -33,6 +34,9 @@ const ProductScreen = () => {
     error: errorProductReview,
   } = productReviewCreate
   const  { id: productId } = useParams();
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
