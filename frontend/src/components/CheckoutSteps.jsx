@@ -2,9 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ch } from "../Utils/translateLibrary/checkout";
+import { fetchSettings } from "../reducers/settingsReducers";
+
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
 const settings = useSelector((state) => state.settings);
   const { language } = settings;
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
   return (
     <div className='checkoutContainer'>
       <div className='checkout-inner'>
