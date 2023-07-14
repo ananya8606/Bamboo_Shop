@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { savePaymentInfo } from '../reducers/cartReducers';
 import { paymentgateway } from '../Utils/translateLibrary/paymentgateway';
 import Message from './Message';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const PaytmPaymentGateway = () => {
   const history = useNavigate();
