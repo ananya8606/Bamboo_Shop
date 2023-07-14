@@ -5,6 +5,7 @@ import Message from '../components/Message'
 import Loading from '../components/Loading'
 import { o } from "../Utils/translateLibrary/order";
 import { useNavigate } from 'react-router-dom';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const MyOrders = () => {
   const settings = useSelector((state) => state.settings);
@@ -15,6 +16,10 @@ const MyOrders = () => {
   const orderListMy = useSelector((state) => state.order.orderListMy)
   const { loading, orders, error } = orderListMy
   const history = useNavigate();
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+  
   useEffect(() => {
     !userInfo && history('/')
     dispatch(listMyOrders())
