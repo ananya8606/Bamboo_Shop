@@ -7,6 +7,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { listProducts, deleteProduct } from '../reducers/productReducers';
 import { ap } from '../Utils/translateLibrary/adminproducts';
 import { useNavigate } from 'react-router-dom';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const AdminProducts = () => {
   const settings = useSelector((state) => state.settings);
@@ -24,6 +25,10 @@ const AdminProducts = () => {
     } = productDelete
     // User Settings
     const history = useNavigate();
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+
     useEffect(() => {
       !userInfo && history('/')
       dispatch(listProducts())
