@@ -57,7 +57,7 @@ useEffect(() => {
 
   return (
     <>
-    <div className='container' style={{display:'flex',flexDirection:'row',marginBottom:'20px'}}>
+   <div className='container location-container' style={{marginBottom:'20px'}}>
     <div style={{margin:'15px',width:'50%'}}>
       <h2 style={{color:'limegreen'}}>{lo.lom[language]}</h2>
       <div id="map" style={{height: '300px',margin:'30px' }}></div>
