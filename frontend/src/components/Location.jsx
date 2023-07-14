@@ -6,6 +6,7 @@ import { createQuery } from '../reducers/userReducers';
 import { useDispatch,useSelector} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { lo } from '../Utils/translateLibrary/Location';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const LocationPage = () => {
   const latitude = 23.163022685504764; // Replace with the actual latitude
@@ -19,7 +20,9 @@ const LocationPage = () => {
   const [updated , setUpdated ] = useState(false);
   const history = useNavigate();
   const dispatch = useDispatch();
-
+useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
   useEffect(() => {
     if (!mapboxgl.accessToken) {
       mapboxgl.accessToken = 'pk.eyJ1IjoiYW5hbnlhaWlpdHIiLCJhIjoiY2xndWN3ajY1MjEybzNqbXRleG1pYWNuMCJ9.iNZtJqCNDVsABQubGPVvcA';
