@@ -6,7 +6,8 @@ import { fetchSettings } from "../reducers/settingsReducers";
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
 const settings = useSelector((state) => state.settings);
-  const { language } = settings;
+const { language } = settings;
+const dispatch = useDispatch();
   useEffect(() => {
   dispatch(fetchSettings());
 }, [dispatch]);
