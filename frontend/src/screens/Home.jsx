@@ -17,9 +17,13 @@ const Home = () => {
   const { loading, products, error } = productList;
   
    useEffect(() => {
-    dispatch(fetchSettings());
-    dispatch(listProducts());
-  }, [dispatch]);
+  dispatch(fetchSettings());
+}, [dispatch]);
+
+useEffect(() => {
+  dispatch(listProducts());
+}, [dispatch]);
+
   
   return (
     <div>
