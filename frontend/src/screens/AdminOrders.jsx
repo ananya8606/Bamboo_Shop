@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ao } from '../Utils/translateLibrary/adminorders';
 import { useNavigate } from 'react-router-dom';
-
+import { fetchSettings } from "../reducers/settingsReducers";
+  
 const AdminOrders = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.user.userLogin)
@@ -21,6 +22,11 @@ const AdminOrders = () => {
   const settings = useSelector((state) => state.settings);
   const { language, currency } = settings;
   const history = useNavigate();
+
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+
   useEffect(() => {
     if (!userInfo) {
       history('/');
