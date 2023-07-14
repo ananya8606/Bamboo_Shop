@@ -4,6 +4,7 @@ import Message from '../components/Message';
 import Loading from '../components/Loading';
 import { listProductDetails, editProduct, uploadImage,productEditReset} from '../reducers/productReducers';
 import { useParams,useNavigate} from 'react-router-dom';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const ProductEdit = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,11 @@ const ProductEdit = () => {
   const [cost, setCost] = useState('');
   const [discount, setDiscount] = useState(0);
   const [quantity, setQuantity] = useState('');
+  
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+  
   const imgHandler = async (e) => {
     const file = e.target.files[0]
     const formData = new FormData()
