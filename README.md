@@ -13,6 +13,8 @@ https://github.com/ananya8606/Bamboo_Shop/assets/52853286/0f0ed6d4-c999-4555-acb
 
 4. Mobile view
 
+https://github.com/ananya8606/Bamboo_Shop/assets/52853286/6b718462-fe32-4e30-812b-fcefcac21159
+
 
 
 
