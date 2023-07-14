@@ -8,6 +8,7 @@ import 'firebase/auth'
 import firebase from 'firebase/app';
 import { l } from '../Utils/translateLibrary/login';
 import { useNavigate } from 'react-router-dom';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,10 @@ const Login = () => {
   const { loading, error, userInformation } = userLogin;
   const userRegister = useSelector((state) => state.user.userRegister);
   const history = useNavigate();
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+
   useEffect(() => {
     if (error) {
       dispatch(userLoginClear());
