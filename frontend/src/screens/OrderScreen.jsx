@@ -6,6 +6,7 @@ import Loading from '../components/Loading';
 import { o } from '../Utils/translateLibrary/order';
 import { useNavigate } from 'react-router-dom';
 import { fetchCartItems } from '../reducers/cartReducers';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const OrderScreen = () => {
   const settings = useSelector((state) => state.settings);
@@ -16,6 +17,11 @@ const OrderScreen = () => {
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
   console.log(cart);
+  
+useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+  
   // Calculate prices
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
