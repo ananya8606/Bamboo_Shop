@@ -5,6 +5,7 @@ import Loading from '../components/Loading';
 import { listUsers, deleteUser } from '../reducers/userReducers';
 import { au } from '../Utils/translateLibrary/adminusers';
 import { useNavigate } from 'react-router-dom';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const AdminUsers = () => {
   const settings = useSelector((state) => state.settings);
@@ -21,6 +22,10 @@ const AdminUsers = () => {
     error: errorDelete,
   } = userDelete
   const history = useNavigate();
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+  
   useEffect(() => {
     !userInfo && history('/')
     dispatch(listUsers())
