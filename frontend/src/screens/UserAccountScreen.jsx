@@ -10,6 +10,7 @@ import {
   updateUserProfile,
 } from '../reducers/userReducers';
 import { uas } from '../Utils/translateLibrary/useraccount';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const UserAccountScreen = () => {
   const [name, setName] = useState('');
@@ -26,7 +27,9 @@ const UserAccountScreen = () => {
 
   const updateProfile = useSelector((state) => state.user.updateProfile);
   const { loading: loadingUpdate, error: errorUpdate, success } = updateProfile;
-
+useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
   const submitHandler = (e) => {
     e.preventDefault();
     const user = {
