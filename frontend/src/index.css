@@ -1612,13 +1612,23 @@ ul.pagination li.active a {
   align-items: center;
   justify-content:center;
 }
-
-
+.map-container{
+  width:50%;
+}
+.query-container{
+  width:50%;
+}
 @media only screen and (max-width:500px){
   .location-container{
     display:flex;
     flex-direction:column;
     align-items: center;
     justify-content:center;
+  }
+  .map-container{
+    width:80%;
+  }
+  .query-container{
+    width:80%;
   }
 }
