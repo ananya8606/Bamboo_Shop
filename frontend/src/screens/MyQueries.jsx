@@ -5,6 +5,7 @@ import Message from '../components/Message'
 import Loading from '../components/Loading'
 import { useParams,useNavigate } from 'react-router-dom';
 import { mq } from '../Utils/translateLibrary/myqueries';
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const MyQueries = () => {
   const settings = useSelector((state) => state.settings);
@@ -17,6 +18,10 @@ const MyQueries = () => {
   const history = useNavigate();
   const { id } = useParams();
 
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+  
   useEffect(() => {
     !userInfo && history('/')
     dispatch(getUserDetails(id))
