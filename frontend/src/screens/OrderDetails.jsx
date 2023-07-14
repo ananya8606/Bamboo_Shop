@@ -6,6 +6,7 @@ import axios from 'axios'
 import { s } from "../Utils/translateLibrary/orderSummary";
 import { useParams,useNavigate } from 'react-router-dom';
 import api from '../api'
+import { fetchSettings } from "../reducers/settingsReducers";
 
 const OrderDetails = () => {
   const settings = useSelector((state) => state.settings);
@@ -17,6 +18,11 @@ const OrderDetails = () => {
   const { userInformation: userInfo } = userLogin
   const {id}=useParams();
   const history = useNavigate();
+  
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
+  
   useEffect(() => {
     !userInfo && history('/')
     const config = {
