@@ -8,6 +8,8 @@ import { listCategoryDetails } from '../reducers/productReducers';
 import Loading from '../components/Loading';
 import { y } from '../Utils/translateLibrary/category';
 import PaginationComponent from '../components/PaginationComponentCategory';
+import { fetchSettings } from "../reducers/settingsReducers";
+
 const CategoryDetails = () => {
   const  { id: productId } = useParams();
   const dispatch = useDispatch();
@@ -18,6 +20,9 @@ const CategoryDetails = () => {
   const [minValue, setMinValue] = useState(100);
   const [value, setValue] = useState(20000);
   const categoryId = useParams().categoryName;
+  useEffect(() => {
+  dispatch(fetchSettings());
+}, [dispatch]);
   const handleChange = (value) => {
     setValue(value);
   };
